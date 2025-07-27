@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover - Cupido</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/components.css">
+    <link rel="stylesheet" href="assets/styles/utilities.css">
+</head>
+
+<body class="bg-brutalist-dark-pink" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root">
+        <div class="layout-container flex h-full grow flex-col">
+            
+            <!-- Header -->
+            <header class="site-header">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between py-4">
+                        <!-- Logo -->
+                        <div class="flex items-center gap-3">
+                            <div class="size-8 text-[var(--dark-pink-800)]">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 6C15.163 6 8 13.163 8 22C8 28.982 13.025 34.849 19.5 36.915V42H28.5V36.915C34.975 34.849 40 28.982 40 22C40 13.163 32.837 6 24 6ZM24 34C16.268 34 10 27.732 10 20C10 12.268 16.268 6 24 6C31.732 6 38 12.268 38 20C38 27.732 31.732 34 24 34Z" fill="currentColor" stroke="black" stroke-width="1.5"></path>
+                                    <path d="M29.207 16.793C28.816 16.402 28.184 16.402 27.793 16.793L22.5 22.086L20.207 19.793C19.816 19.402 19.184 19.402 18.793 19.793C18.402 20.184 18.402 20.816 18.793 21.207L21.793 24.207C22.184 24.598 22.816 24.598 23.207 24.207L29.207 18.207C29.598 17.816 29.598 17.184 29.207 16.793Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h1 class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black">
+                                <a href="index.html" class="hover:text-[var(--dark-pink-800)] transition-colors">Cupido</a>
+                            </h1>
+                        </div>
+                        
+                        <!-- Desktop Navigation -->
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="nav-link" href="home.html">Home</a>
+                            <a class="nav-link text-[var(--dark-pink-600)] font-semibold" href="discover.html">Discover</a>
+                            <a class="nav-link" href="swipe.html">Swipe</a>
+                            <a class="nav-link" href="messages.html">Messages</a>
+                            <a class="nav-link" href="profile.html">Profile</a>
+                            <a href="settings.html" class="btn-secondary">Settings</a>
+                        </nav>
+                        
+                        <!-- Mobile Menu Button -->
+                        <div class="md:hidden">
+                            <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)] hover:text-black" aria-label="Toggle menu">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Menu -->
+                    <nav id="mobile-menu" class="md:hidden hidden border-t-2 border-black py-4">
+                        <div class="flex flex-col gap-4">
+                            <a class="nav-link" href="home.html">Home</a>
+                            <a class="nav-link font-semibold text-[var(--dark-pink-600)]" href="discover.html">Discover</a>
+                            <a class="nav-link" href="swipe.html">Swipe</a>
+                            <a class="nav-link" href="messages.html">Messages</a>
+                            <a class="nav-link" href="profile.html">Profile</a>
+                            <a href="settings.html" class="btn-secondary inline-block text-center">Settings</a>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1">
+                <!-- Page Header -->
+                <section class="py-8">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-8">
+                            <h2 class="text-3xl sm:text-4xl font-black text-black mb-4">
+                                Discover Amazing <span class="text-[var(--dark-pink-500)]">People</span>
+                            </h2>
+                            <p class="text-lg text-[var(--dark-pink-800)] max-w-2xl mx-auto">
+                                Browse through profiles of singles in your area and find your perfect match
+                            </p>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="card p-6 mb-8">
+                            <h3 class="text-xl font-bold text-black mb-4">Filters</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-black mb-2">Age Range</label>
+                                    <div class="flex gap-2">
+                                        <input type="number" placeholder="18" min="18" max="100" class="w-full px-3 py-2 border-2 border-black rounded-none bg-white text-black focus:outline-none focus:border-[var(--dark-pink-500)]">
+                                        <span class="flex items-center text-black font-bold">-</span>
+                                        <input type="number" placeholder="35" min="18" max="100" class="w-full px-3 py-2 border-2 border-black rounded-none bg-white text-black focus:outline-none focus:border-[var(--dark-pink-500)]">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-black mb-2">Distance</label>
+                                    <select class="w-full px-3 py-2 border-2 border-black rounded-none bg-white text-black focus:outline-none focus:border-[var(--dark-pink-500)]">
+                                        <option>Within 10 miles</option>
+                                        <option>Within 25 miles</option>
+                                        <option>Within 50 miles</option>
+                                        <option>Within 100 miles</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-black mb-2">Gender</label>
+                                    <select class="w-full px-3 py-2 border-2 border-black rounded-none bg-white text-black focus:outline-none focus:border-[var(--dark-pink-500)]">
+                                        <option>All</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Non-binary</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-end">
+                                    <button class="w-full btn-primary">Apply Filters</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="profileGrid">
+                            <!-- Sample profiles -->
+                            <div class="profile-card card overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-64 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-bold text-black mb-1">Emma, 25</h3>
+                                    <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 2 miles away</p>
+                                    <p class="text-sm text-black mb-3">Love hiking, coffee, and good conversations. Looking for someone genuine.</p>
+                                    <div class="flex gap-2">
+                                        <button class="btn-secondary flex-1 text-sm py-2">View Profile</button>
+                                        <button class="btn-primary flex-1 text-sm py-2">💕 Like</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card card overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-64 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-bold text-black mb-1">Alex, 28</h3>
+                                    <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 5 miles away</p>
+                                    <p class="text-sm text-black mb-3">Photographer and traveler. Seeking adventure companion.</p>
+                                    <div class="flex gap-2">
+                                        <button class="btn-secondary flex-1 text-sm py-2">View Profile</button>
+                                        <button class="btn-primary flex-1 text-sm py-2">💕 Like</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card card overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-64 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-bold text-black mb-1">Sarah, 26</h3>
+                                    <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 3 miles away</p>
+                                    <p class="text-sm text-black mb-3">Book lover and yoga enthusiast. Let's explore the city together!</p>
+                                    <div class="flex gap-2">
+                                        <button class="btn-secondary flex-1 text-sm py-2">View Profile</button>
+                                        <button class="btn-primary flex-1 text-sm py-2">💕 Like</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card card overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-64 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-bold text-black mb-1">Mike, 30</h3>
+                                    <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 7 miles away</p>
+                                    <p class="text-sm text-black mb-3">Chef and foodie. Let me cook for you on our first date!</p>
+                                    <div class="flex gap-2">
+                                        <button class="btn-secondary flex-1 text-sm py-2">View Profile</button>
+                                        <button class="btn-primary flex-1 text-sm py-2">💕 Like</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card card overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-64 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-bold text-black mb-1">Lisa, 24</h3>
+                                    <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 4 miles away</p>
+                                    <p class="text-sm text-black mb-3">Artist and music lover. Looking for my creative soulmate.</p>
+                                    <div class="flex gap-2">
+                                        <button class="btn-secondary flex-1 text-sm py-2">View Profile</button>
+                                        <button class="btn-primary flex-1 text-sm py-2">💕 Like</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card card overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-64 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-bold text-black mb-1">James, 29</h3>
+                                    <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 6 miles away</p>
+                                    <p class="text-sm text-black mb-3">Tech enthusiast and dog lover. Swipe right if you love Golden Retrievers!</p>
+                                    <div class="flex gap-2">
+                                        <button class="btn-secondary flex-1 text-sm py-2">View Profile</button>
+                                        <button class="btn-primary flex-1 text-sm py-2">💕 Like</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load More Button -->
+                        <div class="text-center mt-8">
+                            <button class="btn-secondary px-8 py-3">Load More Profiles</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50">
+                <div class="container mx-auto px-4 sm:px-6">
+                    <div class="flex flex-wrap justify-center gap-4 mb-4">
+                        <a href="home.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Home</a>
+                        <a href="discover.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Discover</a>
+                        <a href="swipe.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Swipe</a>
+                        <a href="messages.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Messages</a>
+                        <a href="profile.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Profile</a>
+                        <a href="settings.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Settings</a>
+                        <a href="help.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Help</a>
+                    </div>
+                    
+                    <p class="text-sm text-[var(--dark-pink-800)]">
+                        © 2024 Cupido. All rights reserved. Find love, authentically.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Like button functionality
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            if (button.textContent.includes('💕')) {
+                button.addEventListener('click', function() {
+                    this.textContent = this.textContent.includes('💕 Like') ? '✅ Liked' : '💕 Like';
+                    this.style.backgroundColor = this.textContent.includes('✅') ? '#4CAF50' : 'var(--dark-pink-500)';
+                });
+            }
+        });
+
+        // View profile functionality
+        document.querySelectorAll('.btn-secondary').forEach(button => {
+            if (button.textContent.includes('View Profile')) {
+                button.addEventListener('click', function() {
+                    alert('Profile view functionality would open detailed profile here');
+                });
+            }
+        });
+
+        // Load more profiles
+        document.querySelector('.btn-secondary').addEventListener('click', function() {
+            if (this.textContent.includes('Load More')) {
+                alert('Loading more profiles...');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Cupido</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/components.css">
+    <link rel="stylesheet" href="assets/styles/utilities.css">
+</head>
+
+<body class="bg-brutalist-dark-pink" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root">
+        <div class="layout-container flex h-full grow flex-col">
+            
+            <!-- Header -->
+            <header class="site-header">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between py-4">
+                        <!-- Logo -->
+                        <div class="flex items-center gap-3">
+                            <div class="size-8 text-[var(--dark-pink-800)]">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 6C15.163 6 8 13.163 8 22C8 28.982 13.025 34.849 19.5 36.915V42H28.5V36.915C34.975 34.849 40 28.982 40 22C40 13.163 32.837 6 24 6ZM24 34C16.268 34 10 27.732 10 20C10 12.268 16.268 6 24 6C31.732 6 38 12.268 38 20C38 27.732 31.732 34 24 34Z" fill="currentColor" stroke="black" stroke-width="1.5"></path>
+                                    <path d="M29.207 16.793C28.816 16.402 28.184 16.402 27.793 16.793L22.5 22.086L20.207 19.793C19.816 19.402 19.184 19.402 18.793 19.793C18.402 20.184 18.402 20.816 18.793 21.207L21.793 24.207C22.184 24.598 22.816 24.598 23.207 24.207L29.207 18.207C29.598 17.816 29.598 17.184 29.207 16.793Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h1 class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black">
+                                <a href="index.html" class="hover:text-[var(--dark-pink-800)] transition-colors">Cupido</a>
+                            </h1>
+                        </div>
+                        
+                        <!-- Desktop Navigation -->
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="nav-link" href="home.html">Home</a>
+                            <a class="nav-link" href="discover.html">Discover</a>
+                            <a class="nav-link" href="swipe.html">Swipe</a>
+                            <a class="nav-link" href="messages.html">Messages</a>
+                            <a class="nav-link text-[var(--dark-pink-600)] font-semibold" href="profile.html">Profile</a>
+                            <a href="settings.html" class="btn-secondary">Settings</a>
+                        </nav>
+                        
+                        <!-- Mobile Menu Button -->
+                        <div class="md:hidden">
+                            <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)] hover:text-black" aria-label="Toggle menu">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div class="max-w-4xl mx-auto">
+                        
+                        <!-- Profile Header -->
+                        <div class="card p-8 mb-8">
+                            <div class="flex flex-col md:flex-row items-center gap-8">
+                                <!-- Profile Picture -->
+                                <div class="relative">
+                                    <img src="assets/images/default-avatar.png" alt="Your Profile" class="w-32 h-32 rounded-full object-cover border-4 border-black">
+                                    <button class="absolute bottom-0 right-0 w-10 h-10 bg-[var(--dark-pink-500)] text-white rounded-full flex items-center justify-center border-2 border-black hover:bg-[var(--dark-pink-600)] transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
+                                <!-- Profile Info -->
+                                <div class="flex-1 text-center md:text-left">
+                                    <h2 class="text-3xl font-black text-black mb-2">John Doe, 28</h2>
+                                    <p class="text-lg text-[var(--dark-pink-800)] mb-4">📍 San Francisco, CA</p>
+                                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-4">
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-[var(--dark-pink-500)]">42</div>
+                                            <div class="text-sm text-[var(--dark-pink-800)]">Matches</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-[var(--dark-pink-500)]">128</div>
+                                            <div class="text-sm text-[var(--dark-pink-800)]">Likes</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-[var(--dark-pink-500)]">95%</div>
+                                            <div class="text-sm text-[var(--dark-pink-800)]">Profile Complete</div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary">Edit Profile</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Details Grid -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            
+                            <!-- About Me -->
+                            <div class="card p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-black">About Me</h3>
+                                    <button class="text-[var(--dark-pink-600)] hover:text-[var(--dark-pink-800)]">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p class="text-[var(--dark-pink-800)] mb-4">
+                                    I'm a passionate photographer and adventure seeker who loves exploring new places and meeting interesting people. 
+                                    When I'm not behind the camera, you can find me hiking, trying new restaurants, or planning my next travel destination.
+                                </p>
+                                <p class="text-[var(--dark-pink-800)]">
+                                    Looking for someone who shares my love for adventure and isn't afraid to try new things. 
+                                    Let's create amazing memories together!
+                                </p>
+                            </div>
+
+                            <!-- Basic Info -->
+                            <div class="card p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-black">Basic Info</h3>
+                                    <button class="text-[var(--dark-pink-600)] hover:text-[var(--dark-pink-800)]">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-black font-semibold">Height:</span>
+                                        <span class="text-[var(--dark-pink-800)]">6'0" (183 cm)</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-black font-semibold">Education:</span>
+                                        <span class="text-[var(--dark-pink-800)]">Bachelor's Degree</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-black font-semibold">Occupation:</span>
+                                        <span class="text-[var(--dark-pink-800)]">Software Engineer</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-black font-semibold">Relationship:</span>
+                                        <span class="text-[var(--dark-pink-800)]">Single</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-black font-semibold">Looking for:</span>
+                                        <span class="text-[var(--dark-pink-800)]">Long-term</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interests -->
+                            <div class="card p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-black">Interests</h3>
+                                    <button class="text-[var(--dark-pink-600)] hover:text-[var(--dark-pink-800)]">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">📸 Photography</span>
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">🥾 Hiking</span>
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">✈️ Travel</span>
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">🍕 Foodie</span>
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">🎵 Music</span>
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">🏃‍♂️ Running</span>
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">📚 Reading</span>
+                                    <span class="px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full">🎮 Gaming</span>
+                                </div>
+                            </div>
+
+                            <!-- Photos -->
+                            <div class="card p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-black">Photos</h3>
+                                    <button class="text-[var(--dark-pink-600)] hover:text-[var(--dark-pink-800)]">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="aspect-square bg-gray-200 border-2 border-black rounded-lg overflow-hidden">
+                                        <img src="assets/images/default-avatar.png" alt="Photo 1" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="aspect-square bg-gray-200 border-2 border-black rounded-lg overflow-hidden">
+                                        <img src="assets/images/default-avatar.png" alt="Photo 2" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="aspect-square bg-gray-200 border-2 border-black rounded-lg overflow-hidden">
+                                        <img src="assets/images/default-avatar.png" alt="Photo 3" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="aspect-square bg-gray-200 border-2 border-black rounded-lg overflow-hidden">
+                                        <img src="assets/images/default-avatar.png" alt="Photo 4" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="aspect-square bg-gray-200 border-2 border-black rounded-lg overflow-hidden">
+                                        <img src="assets/images/default-avatar.png" alt="Photo 5" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="aspect-square bg-[var(--dark-pink-100)] border-2 border-dashed border-[var(--dark-pink-500)] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[var(--dark-pink-200)] transition-colors">
+                                        <svg class="w-8 h-8 text-[var(--dark-pink-500)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Account Actions -->
+                        <div class="card p-6 mt-8">
+                            <h3 class="text-xl font-bold text-black mb-4">Account Actions</h3>
+                            <div class="flex flex-wrap gap-4">
+                                <button class="btn-secondary">Edit Profile</button>
+                                <button class="btn-secondary">Privacy Settings</button>
+                                <button class="btn-secondary">Notification Settings</button>
+                                <button class="btn-secondary">Account Settings</button>
+                                <button class="text-red-600 hover:text-red-800 font-semibold">Deactivate Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50">
+                <div class="container mx-auto px-4 sm:px-6">
+                    <div class="flex flex-wrap justify-center gap-4 mb-4">
+                        <a href="home.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Home</a>
+                        <a href="discover.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Discover</a>
+                        <a href="swipe.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Swipe</a>
+                        <a href="messages.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Messages</a>
+                        <a href="profile.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Profile</a>
+                        <a href="settings.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Settings</a>
+                        <a href="help.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Help</a>
+                    </div>
+                    
+                    <p class="text-sm text-[var(--dark-pink-800)]">
+                        © 2024 Cupido. All rights reserved. Find love, authentically.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Edit buttons functionality
+        document.querySelectorAll('.btn-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent.includes('Edit Profile')) {
+                    alert('Edit profile functionality would open here');
+                } else if (this.textContent.includes('Privacy Settings')) {
+                    alert('Privacy settings would open here');
+                } else if (this.textContent.includes('Notification Settings')) {
+                    alert('Notification settings would open here');
+                } else if (this.textContent.includes('Account Settings')) {
+                    alert('Account settings would open here');
+                }
+            });
+        });
+
+        // Photo upload
+        document.querySelector('[d="M12 6v6m0 0v6m0-6h6m-6 0H6"]').closest('div').addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // In a real app, this would upload the image
+                        alert('Photo upload functionality would be implemented here');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        });
+
+        // Profile picture change
+        document.querySelector('[d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"]').closest('button').addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // In a real app, this would upload and update the profile picture
+                        alert('Profile picture update functionality would be implemented here');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        });
+
+        // Deactivate account
+        document.querySelector('.text-red-600').addEventListener('click', function() {
+            if (confirm('Are you sure you want to deactivate your account? This action can be reversed later.')) {
+                alert('Account deactivation functionality would be implemented here');
+            }
+        });
+    </script>
+</body>
+</html>
