@@ -63,8 +63,8 @@ const signin = async (req, res) => {
         if(!validPassword) return res.status(401).json({"message": "Wrong Password"});
         
         const SECRET_KEY = process.env.SECRET_KEY;
-        const token = jwt.sign({email: user[0].email}, SECRET_KEY);
-
+        const token = jwt.sign({id: user[0].id}, SECRET_KEY);
+        
         return res.status(200).json({
             "message": "Login Successful",
             "token": token

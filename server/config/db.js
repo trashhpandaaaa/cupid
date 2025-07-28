@@ -13,6 +13,61 @@ const connection = mysql.createPool({
     queueLimit: 0
 });
 
+async function createUsersTable() {
+  const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS users (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL UNIQUE,
+      password VARCHAR(255) NOT NULL,
+      age INT,
+      gender ENUM('male', 'female', 'other'),
+      city VARCHAR(100),
+      hobbies TEXT,
+      preferences TEXT,
+      bio TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+  `;
+
+  try {
+    await connection.execute(createTableQuery);
+    console.log("Users table is ready.");
+  } catch (error) {
+    console.error("Error creating users table:", error.message);
+  }
+}
+
+async function createProfileInfoTable() {
+  const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS profile_info (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      user_id INT NOT NULL,
+      photo_url VARCHAR(255),
+      height VARCHAR(20),
+      education VARCHAR(100),
+      occupation VARCHAR(100),
+      relationship_status VARCHAR(50),
+      looking_for VARCHAR(100),
+      about_me TEXT,
+      location VARCHAR(100),
+      matches INT DEFAULT 0,
+      likes INT DEFAULT 0,
+      profile_complete_percentage INT DEFAULT 0,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+  `;
+
+  try {
+    await connection.execute(createTableQuery);
+    console.log("Profile info table is ready.");
+  } catch (error) {
+    console.error("Error creating profile_info table:", error.message);
+  }
+}
+
 async function testConnection() {
     try{
         const conn = await connection.getConnection();
@@ -26,5 +81,7 @@ async function testConnection() {
 }
 
 testConnection();
+createUsersTable();
+createProfileInfoTable();
 
 module.exports = connection;
