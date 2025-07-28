@@ -3,12 +3,20 @@
 const express = require("express");
 const app = express();
 
+const {signup, signin} = require("./controllers/auth.controller.js");
+
 require("dotenv").config();
 
 const port = process.env.PORT
 
-app.get("/", (req, res) => {
-    res.send("Hello");
+const cors = require('cors');
+app.use(cors());
+app.use(express.json());
+
+app.post("/signup", signup);
+app.post("/signin", signin); 
+app.get("/", (req, res)=>{
+    res.status(200).send("Hello");
 });
 
 app.listen(port, () => {
