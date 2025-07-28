@@ -11,6 +11,43 @@
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="assets/styles/components.css">
     <link rel="stylesheet" href="assets/styles/utilities.css">
+    
+    <!-- Custom CSS to prevent hover animations -->
+    <style>
+        /* Remove any hover effects on conversation items */
+        .conversation-item:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+            background-color: inherit !important;
+        }
+        
+        /* Remove any hover effects on cards */
+        .card:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+        }
+        
+        /* Remove any hover effects on message boxes */
+        .max-w-xs:hover, .max-w-sm:hover, .max-w-md:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+        }
+        
+        /* Override any general hover animations */
+        div:hover {
+            transform: none !important;
+        }
+        
+        /* Ensure no lifting animations on rounded elements */
+        .rounded-lg:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+        }
+    </style>
 </head>
 
 <body class="bg-brutalist-dark-pink" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
@@ -30,23 +67,19 @@
                                 </svg>
                             </div>
                             <h1 class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black">
-                                <a href="index.html" class="hover:text-[var(--dark-pink-800)] transition-colors">Cupido</a>
+                                <a href="home.html" class="text-[var(--dark-pink-800)]">Cupido</a>
                             </h1>
                         </div>
                         
                         <!-- Desktop Navigation -->
                         <nav class="hidden md:flex items-center gap-6">
-                            <a class="nav-link" href="home.html">Home</a>
-                            <a class="nav-link" href="discover.html">Discover</a>
-                            <a class="nav-link" href="swipe.html">Swipe</a>
-                            <a class="nav-link text-[var(--dark-pink-600)] font-semibold" href="messages.html">Messages</a>
-                            <a class="nav-link" href="profile.html">Profile</a>
-                            <a href="settings.html" class="btn-secondary">Settings</a>
+                            <a href="login.html" class="btn-secondary">Login</a>
+                            <a href="signup.html" class="btn-primary">Sign Up</a>
                         </nav>
                         
                         <!-- Mobile Menu Button -->
                         <div class="md:hidden">
-                            <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)] hover:text-black" aria-label="Toggle menu">
+                            <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)]" aria-label="Toggle menu">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                                 </svg>
@@ -56,13 +89,9 @@
                     
                     <!-- Mobile Menu -->
                     <nav id="mobile-menu" class="md:hidden hidden border-t-2 border-black py-4">
-                        <div class="flex flex-col gap-4">
-                            <a class="nav-link" href="home.html">Home</a>
-                            <a class="nav-link" href="discover.html">Discover</a>
-                            <a class="nav-link" href="swipe.html">Swipe</a>
-                            <a class="nav-link text-[var(--dark-pink-600)] font-semibold" href="messages.html">Messages</a>
-                            <a class="nav-link" href="profile.html">Profile</a>
-                            <a href="settings.html" class="btn-secondary inline-block text-center">Settings</a>
+                        <div class="flex flex-col gap-4 px-4">
+                            <a href="login.html" class="btn-secondary inline-block text-center">Login</a>
+                            <a href="signup.html" class="btn-primary inline-block text-center">Sign Up</a>
                         </div>
                     </nav>
                 </div>
@@ -102,7 +131,7 @@
                                     
                                     <div class="flex-1 overflow-y-auto min-h-[200px] lg:min-h-0">
                                         <!-- Conversation Items -->
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer hover:bg-[var(--dark-pink-100)] transition-colors active" data-conversation="emma">
+                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer active" data-conversation="emma">
                                             <div class="flex items-center gap-3">
                                                 <img src="assets/images/default-avatar.png" alt="Emma" class="w-12 h-12 rounded-full object-cover">
                                                 <div class="flex-1 min-w-0">
@@ -116,7 +145,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer hover:bg-[var(--dark-pink-100)] transition-colors" data-conversation="alex">
+                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer" data-conversation="alex">
                                             <div class="flex items-center gap-3">
                                                 <img src="assets/images/default-avatar.png" alt="Alex" class="w-12 h-12 rounded-full object-cover">
                                                 <div class="flex-1 min-w-0">
@@ -129,7 +158,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer hover:bg-[var(--dark-pink-100)] transition-colors" data-conversation="sarah">
+                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer" data-conversation="sarah">
                                             <div class="flex items-center gap-3">
                                                 <img src="assets/images/default-avatar.png" alt="Sarah" class="w-12 h-12 rounded-full object-cover">
                                                 <div class="flex-1 min-w-0">
@@ -142,7 +171,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer hover:bg-[var(--dark-pink-100)] transition-colors" data-conversation="mike">
+                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer" data-conversation="mike">
                                             <div class="flex items-center gap-3">
                                                 <img src="assets/images/default-avatar.png" alt="Mike" class="w-12 h-12 rounded-full object-cover">
                                                 <div class="flex-1 min-w-0">
@@ -169,7 +198,7 @@
                                             <h3 class="text-lg font-bold text-black">Emma</h3>
                                             <p class="text-sm text-[var(--dark-pink-800)]">Online now</p>
                                         </div>
-                                        <button class="p-2 text-[var(--dark-pink-800)] hover:text-black">
+                                        <button class="p-2 text-[var(--dark-pink-800)]">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
                                             </svg>
@@ -230,18 +259,8 @@
             <!-- Footer -->
             <footer class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50">
                 <div class="container mx-auto px-4 sm:px-6">
-                    <div class="flex flex-wrap justify-center gap-4 mb-4">
-                        <a href="home.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Home</a>
-                        <a href="discover.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Discover</a>
-                        <a href="swipe.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Swipe</a>
-                        <a href="messages.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Messages</a>
-                        <a href="profile.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Profile</a>
-                        <a href="settings.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Settings</a>
-                        <a href="help.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Help</a>
-                    </div>
-                    
                     <p class="text-sm text-[var(--dark-pink-800)]">
-                        © 2024 Cupido. All rights reserved. Find love, authentically.
+                        © 2025 Cupido. All rights reserved. Find love, authentically.
                     </p>
                 </div>
             </footer>
