@@ -30,18 +30,14 @@
                                 </svg>
                             </div>
                             <h1 class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black">
-                                <a href="index.html" class="hover:text-[var(--dark-pink-800)] transition-colors">Cupido</a>
+                                <a href="home.html" class="hover:text-[var(--dark-pink-800)] transition-colors">Cupido</a>
                             </h1>
                         </div>
                         
                         <!-- Desktop Navigation -->
                         <nav class="hidden md:flex items-center gap-6">
-                            <a class="nav-link" href="home.html">Home</a>
-                            <a class="nav-link" href="discover.html">Discover</a>
-                            <a class="nav-link text-[var(--dark-pink-600)] font-semibold" href="swipe.html">Swipe</a>
-                            <a class="nav-link" href="messages.html">Messages</a>
-                            <a class="nav-link" href="profile.html">Profile</a>
-                            <a href="settings.html" class="btn-secondary">Settings</a>
+                            <a href="login.html" class="btn-secondary">Login</a>
+                            <a href="signup.html" class="btn-primary">Sign Up</a>
                         </nav>
                         
                         <!-- Mobile Menu Button -->
@@ -51,6 +47,14 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                                 </svg>
                             </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Menu -->
+                    <div id="mobile-menu" class="hidden md:hidden bg-[var(--dark-pink-200)] border-t-2 border-black">
+                        <div class="px-4 py-2 space-y-2">
+                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors" href="login.html">Login</a>
+                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors" href="signup.html">Sign Up</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +82,7 @@
                                 <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator1">LIKE</div>
                             </div>
 
-                            <div class="swipe-card absolute inset-0 card overflow-hidden cursor-grab active:cursor-grabbing" id="card2" style="z-index: -1; scale: 0.95;">
+                            <div class="swipe-card absolute card overflow-hidden cursor-grab active:cursor-grabbing book-stack-card-2" id="card2" style="z-index: -1;">
                                 <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
                                 <div class="p-6 h-2/5 flex flex-col justify-between">
                                     <div>
@@ -91,7 +95,7 @@
                                 <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator2">LIKE</div>
                             </div>
 
-                            <div class="swipe-card absolute inset-0 card overflow-hidden cursor-grab active:cursor-grabbing" id="card3" style="z-index: -2; scale: 0.9;">
+                            <div class="swipe-card absolute card overflow-hidden cursor-grab active:cursor-grabbing book-stack-card-3" id="card3" style="z-index: -2;">
                                 <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
                                 <div class="p-6 h-2/5 flex flex-col justify-between">
                                     <div>
@@ -164,19 +168,9 @@
 
             <!-- Footer -->
             <footer class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50">
-                <div class="container mx-auto px-4 sm:px-6">
-                    <div class="flex flex-wrap justify-center gap-4 mb-4">
-                        <a href="home.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Home</a>
-                        <a href="discover.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Discover</a>
-                        <a href="swipe.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Swipe</a>
-                        <a href="messages.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Messages</a>
-                        <a href="profile.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Profile</a>
-                        <a href="settings.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Settings</a>
-                        <a href="help.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Help</a>
-                    </div>
-                    
+                <div class="container mx-auto px-4 sm:px-6">        
                     <p class="text-sm text-[var(--dark-pink-800)]">
-                        © 2024 Cupido. All rights reserved. Find love, authentically.
+                        © 2025 Cupido. All rights reserved. Find love, authentically.
                     </p>
                 </div>
             </footer>
@@ -185,6 +179,129 @@
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
+    <style>
+        /* Additional swipe-specific styles */
+        .swipe-card {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            transition: all 0.3s ease;
+        }
+        
+        .swipe-card img {
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        
+        #swipeContainer {
+            touch-action: none;
+            perspective: 1000px;
+        }
+        
+        .card {
+            border: 3px solid #2c1810;
+            border-radius: 12px;
+            background: #f8f6f0;
+            position: relative;
+        }
+        
+        /* Book stack effect */
+        .swipe-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #f8f6f0 0%, #ebe7db 100%);
+        }
+        
+        /* Top card (active) */
+        .swipe-card:first-child {
+            z-index: 3;
+            transform: translateY(0px) scale(1);
+            box-shadow: 
+                0 25px 50px rgba(44, 24, 16, 0.25),
+                0 15px 25px rgba(44, 24, 16, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Second card */
+        .book-stack-card-2 {
+            z-index: 2 !important;
+            transform: translateY(8px) translateX(-4px) scale(0.96) !important;
+            box-shadow: 
+                0 20px 40px rgba(44, 24, 16, 0.2),
+                0 10px 20px rgba(44, 24, 16, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            background: linear-gradient(145deg, #ede9dd 0%, #e0dccf 100%);
+            border-color: #3a281f;
+        }
+        
+        /* Third card */
+        .book-stack-card-3 {
+            z-index: 1 !important;
+            transform: translateY(16px) translateX(-8px) scale(0.92) !important;
+            box-shadow: 
+                0 15px 30px rgba(44, 24, 16, 0.15),
+                0 8px 16px rgba(44, 24, 16, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            background: linear-gradient(145deg, #e2dec2 0%, #d5d1c3 100%);
+            border-color: #453020;
+        }
+        
+        /* Book spine effect on the side */
+        .swipe-card::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #8b4513, #654321);
+            border-radius: 3px 0 0 3px;
+            z-index: -1;
+        }
+        
+        .book-stack-card-2::before {
+            background: linear-gradient(180deg, #7a3e0f, #563015);
+        }
+        
+        .book-stack-card-3::before {
+            background: linear-gradient(180deg, #693509, #4a2611);
+        }
+        
+        /* Book pages effect */
+        .swipe-card::after {
+            content: '';
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            bottom: 2px;
+            width: 8px;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(44, 24, 16, 0.1) 2px,
+                rgba(44, 24, 16, 0.1) 3px
+            );
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* Hover effects for book stack */
+        .swipe-card:hover {
+            transform: translateY(-2px) scale(1.01);
+        }
+        
+        .book-stack-card-2:hover {
+            transform: translateY(6px) translateX(-4px) scale(0.97) !important;
+        }
+        
+        .book-stack-card-3:hover {
+            transform: translateY(14px) translateX(-8px) scale(0.93) !important;
+        }
+    </style>
     <script>
         let currentCardIndex = 0;
         const cards = ['card1', 'card2', 'card3'];
@@ -206,10 +323,21 @@
         let profileIndex = 3; // Start after the initial 3 profiles
 
         // Mobile menu toggle
-        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
 
         // Button event listeners
         document.getElementById('passBtn').addEventListener('click', () => swipeCard('left'));
@@ -217,52 +345,76 @@
         document.getElementById('superLikeBtn').addEventListener('click', () => swipeCard('up'));
 
         // Touch/Mouse events for swipe functionality
-        cards.forEach(cardId => {
-            const card = document.getElementById(cardId);
-            
-            // Mouse events
-            card.addEventListener('mousedown', startDrag);
-            card.addEventListener('mousemove', drag);
-            card.addEventListener('mouseup', endDrag);
-            card.addEventListener('mouseleave', endDrag);
-            
-            // Touch events
-            card.addEventListener('touchstart', startDrag);
-            card.addEventListener('touchmove', drag);
-            card.addEventListener('touchend', endDrag);
-        });
+        function initializeCardEvents() {
+            cards.forEach(cardId => {
+                const card = document.getElementById(cardId);
+                if (!card) return;
+                
+                // Mouse events
+                card.addEventListener('mousedown', startDrag, { passive: false });
+                document.addEventListener('mousemove', drag, { passive: false });
+                document.addEventListener('mouseup', endDrag);
+                
+                // Touch events
+                card.addEventListener('touchstart', startDrag, { passive: false });
+                card.addEventListener('touchmove', drag, { passive: false });
+                card.addEventListener('touchend', endDrag);
+            });
+        }
+        
+        initializeCardEvents();
 
         function startDrag(e) {
-            if (e.target.closest('.swipe-card').id !== cards[currentCardIndex]) return;
+            const targetCard = e.target.closest('.swipe-card');
+            if (!targetCard || targetCard.id !== cards[currentCardIndex]) return;
             
+            e.preventDefault();
             isDragging = true;
-            cardBeingDragged = e.target.closest('.swipe-card');
-            startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-            cardBeingDragged.style.transition = 'none';
+            cardBeingDragged = targetCard;
+            
+            const clientX = e.type === 'mousedown' ? e.clientX : 
+                           e.touches && e.touches[0] ? e.touches[0].clientX : 0;
+            startX = clientX;
+            
+            if (cardBeingDragged) {
+                cardBeingDragged.style.transition = 'none';
+                cardBeingDragged.style.cursor = 'grabbing';
+            }
         }
 
         function drag(e) {
             if (!isDragging || !cardBeingDragged) return;
             
             e.preventDefault();
-            currentX = (e.type === 'mousemove' ? e.clientX : e.touches[0].clientX) - startX;
+            
+            const clientX = e.type === 'mousemove' ? e.clientX : 
+                           e.touches && e.touches[0] ? e.touches[0].clientX : 0;
+            currentX = clientX - startX;
             
             const rotation = currentX * 0.1;
-            cardBeingDragged.style.transform = `translateX(${currentX}px) rotate(${rotation}deg)`;
+            const lift = Math.abs(currentX) * 0.2; // Lift the card as it's dragged
+            
+            cardBeingDragged.style.transform = `translateX(${currentX}px) translateY(-${lift}px) rotate(${rotation}deg) scale(1.05)`;
+            cardBeingDragged.style.boxShadow = `
+                0 ${30 + lift}px ${60 + lift}px rgba(44, 24, 16, 0.3),
+                0 ${20 + lift}px ${30 + lift}px rgba(44, 24, 16, 0.2)
+            `;
             
             // Show indicators based on swipe direction
             const likeIndicator = cardBeingDragged.querySelector('[id^="likeIndicator"]');
             const nopeIndicator = cardBeingDragged.querySelector('[id^="nopeIndicator"]');
             
-            if (currentX > 50) {
-                likeIndicator.style.opacity = Math.min(1, (currentX - 50) / 100);
-                nopeIndicator.style.opacity = 0;
-            } else if (currentX < -50) {
-                nopeIndicator.style.opacity = Math.min(1, (-currentX - 50) / 100);
-                likeIndicator.style.opacity = 0;
-            } else {
-                likeIndicator.style.opacity = 0;
-                nopeIndicator.style.opacity = 0;
+            if (likeIndicator && nopeIndicator) {
+                if (currentX > 50) {
+                    likeIndicator.style.opacity = Math.min(1, (currentX - 50) / 100);
+                    nopeIndicator.style.opacity = 0;
+                } else if (currentX < -50) {
+                    nopeIndicator.style.opacity = Math.min(1, (-currentX - 50) / 100);
+                    likeIndicator.style.opacity = 0;
+                } else {
+                    likeIndicator.style.opacity = 0;
+                    nopeIndicator.style.opacity = 0;
+                }
             }
         }
 
@@ -271,20 +423,29 @@
             
             isDragging = false;
             
-            if (Math.abs(currentX) > 100) {
-                // Complete the swipe
-                const direction = currentX > 0 ? 'right' : 'left';
-                completeSwipe(cardBeingDragged, direction);
-            } else {
-                // Snap back
-                cardBeingDragged.style.transition = 'transform 0.3s ease';
-                cardBeingDragged.style.transform = '';
+            if (cardBeingDragged) {
+                cardBeingDragged.style.cursor = 'grab';
                 
-                // Hide indicators
-                const likeIndicator = cardBeingDragged.querySelector('[id^="likeIndicator"]');
-                const nopeIndicator = cardBeingDragged.querySelector('[id^="nopeIndicator"]');
-                likeIndicator.style.opacity = 0;
-                nopeIndicator.style.opacity = 0;
+                if (Math.abs(currentX) > 100) {
+                    // Complete the swipe
+                    const direction = currentX > 0 ? 'right' : 'left';
+                    completeSwipe(cardBeingDragged, direction);
+                } else {
+                    // Snap back to book stack position
+                    cardBeingDragged.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                    cardBeingDragged.style.transform = 'translateY(0px) scale(1)';
+                    cardBeingDragged.style.boxShadow = `
+                        0 25px 50px rgba(44, 24, 16, 0.25),
+                        0 15px 25px rgba(44, 24, 16, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.6)
+                    `;
+                    
+                    // Hide indicators
+                    const likeIndicator = cardBeingDragged.querySelector('[id^="likeIndicator"]');
+                    const nopeIndicator = cardBeingDragged.querySelector('[id^="nopeIndicator"]');
+                    if (likeIndicator) likeIndicator.style.opacity = 0;
+                    if (nopeIndicator) nopeIndicator.style.opacity = 0;
+                }
             }
             
             cardBeingDragged = null;
@@ -324,14 +485,29 @@
                 return;
             }
             
-            // Bring next cards forward
+            // Update book stack positioning
             for (let i = currentCardIndex; i < cards.length; i++) {
                 const card = document.getElementById(cards[i]);
-                const zIndex = cards.length - i;
-                const scale = 1 - (i - currentCardIndex) * 0.05;
+                const stackPosition = i - currentCardIndex;
                 
-                card.style.zIndex = zIndex;
-                card.style.transform = `scale(${scale})`;
+                // Remove existing classes
+                card.classList.remove('book-stack-card-2', 'book-stack-card-3');
+                
+                if (stackPosition === 0) {
+                    // Top card (active)
+                    card.style.zIndex = 3;
+                    card.style.transform = 'translateY(0px) scale(1)';
+                } else if (stackPosition === 1) {
+                    // Second card
+                    card.classList.add('book-stack-card-2');
+                    card.style.zIndex = 2;
+                    card.style.transform = 'translateY(8px) translateX(-4px) scale(0.96)';
+                } else if (stackPosition === 2) {
+                    // Third card
+                    card.classList.add('book-stack-card-3');
+                    card.style.zIndex = 1;
+                    card.style.transform = 'translateY(16px) translateX(-8px) scale(0.92)';
+                }
             }
             
             // Load new profile for the last card if available
@@ -341,59 +517,81 @@
         }
 
         function loadNewProfile() {
+            if (profileIndex >= profiles.length) return;
+            
             const lastCardIndex = (currentCardIndex + 2) % cards.length;
             const lastCard = document.getElementById(cards[lastCardIndex]);
             const profile = profiles[profileIndex];
             
-            // Update card content
-            const nameElement = lastCard.querySelector('h3');
-            const locationElement = lastCard.querySelector('p');
-            const bioElement = lastCard.querySelectorAll('p')[1];
+            if (!lastCard || !profile) return;
             
-            nameElement.textContent = profile.name;
-            locationElement.textContent = `📍 ${profile.location}`;
-            bioElement.textContent = profile.bio;
-            
-            // Reset card state
-            lastCard.style.display = 'block';
-            lastCard.style.opacity = '1';
-            lastCard.style.transform = 'scale(0.9)';
-            lastCard.style.zIndex = '-2';
-            
-            // Hide indicators
-            const likeIndicator = lastCard.querySelector('[id^="likeIndicator"]');
-            const nopeIndicator = lastCard.querySelector('[id^="nopeIndicator"]');
-            likeIndicator.style.opacity = 0;
-            nopeIndicator.style.opacity = 0;
-            
-            profileIndex++;
+            try {
+                // Update card content
+                const nameElement = lastCard.querySelector('h3');
+                const locationElement = lastCard.querySelector('p');
+                const bioElement = lastCard.querySelectorAll('p')[1];
+                
+                if (nameElement) nameElement.textContent = profile.name;
+                if (locationElement) locationElement.textContent = `📍 ${profile.location}`;
+                if (bioElement) bioElement.textContent = profile.bio;
+                
+                // Reset card state and apply book stack positioning
+                lastCard.style.display = 'block';
+                lastCard.style.opacity = '1';
+                lastCard.style.transition = '';
+                
+                // Set as third card in stack
+                lastCard.classList.remove('book-stack-card-2');
+                lastCard.classList.add('book-stack-card-3');
+                lastCard.style.zIndex = '1';
+                lastCard.style.transform = 'translateY(16px) translateX(-8px) scale(0.92)';
+                
+                // Hide indicators
+                const likeIndicator = lastCard.querySelector('[id^="likeIndicator"]');
+                const nopeIndicator = lastCard.querySelector('[id^="nopeIndicator"]');
+                if (likeIndicator) likeIndicator.style.opacity = 0;
+                if (nopeIndicator) nopeIndicator.style.opacity = 0;
+                
+                profileIndex++;
+            } catch (error) {
+                console.error('Error loading new profile:', error);
+            }
         }
 
         function updateStats(direction) {
-            const swipesLeftElement = document.getElementById('swipesLeft');
-            const likesCountElement = document.getElementById('likesCount');
-            const matchesCountElement = document.getElementById('matchesCount');
-            
-            let swipesLeft = parseInt(swipesLeftElement.textContent);
-            swipesLeft--;
-            swipesLeftElement.textContent = swipesLeft;
-            
-            if (direction === 'right' || direction === 'up') {
-                let likesCount = parseInt(likesCountElement.textContent);
-                likesCount++;
-                likesCountElement.textContent = likesCount;
+            try {
+                const swipesLeftElement = document.getElementById('swipesLeft');
+                const likesCountElement = document.getElementById('likesCount');
+                const matchesCountElement = document.getElementById('matchesCount');
                 
-                // Random chance of match
-                if (Math.random() > 0.7) {
-                    let matchesCount = parseInt(matchesCountElement.textContent);
-                    matchesCount++;
-                    matchesCountElement.textContent = matchesCount;
-                    
-                    // Show match notification
-                    setTimeout(() => {
-                        alert('🎉 It\'s a Match! You can now start chatting.');
-                    }, 600);
+                if (!swipesLeftElement || !likesCountElement || !matchesCountElement) {
+                    console.error('Stats elements not found');
+                    return;
                 }
+                
+                let swipesLeft = parseInt(swipesLeftElement.textContent) || 0;
+                swipesLeft = Math.max(0, swipesLeft - 1);
+                swipesLeftElement.textContent = swipesLeft;
+                
+                if (direction === 'right' || direction === 'up') {
+                    let likesCount = parseInt(likesCountElement.textContent) || 0;
+                    likesCount++;
+                    likesCountElement.textContent = likesCount;
+                    
+                    // Random chance of match
+                    if (Math.random() > 0.7) {
+                        let matchesCount = parseInt(matchesCountElement.textContent) || 0;
+                        matchesCount++;
+                        matchesCountElement.textContent = matchesCount;
+                        
+                        // Show match notification
+                        setTimeout(() => {
+                            alert('It\'s a Match! You can now start chatting.');
+                        }, 600);
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating stats:', error);
             }
         }
 
