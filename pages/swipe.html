@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe - Cupido</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/components.css">
+    <link rel="stylesheet" href="assets/styles/utilities.css">
+</head>
+
+<body class="bg-brutalist-dark-pink" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root">
+        <div class="layout-container flex h-full grow flex-col">
+            
+            <!-- Header -->
+            <header class="site-header">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between py-4">
+                        <!-- Logo -->
+                        <div class="flex items-center gap-3">
+                            <div class="size-8 text-[var(--dark-pink-800)]">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 6C15.163 6 8 13.163 8 22C8 28.982 13.025 34.849 19.5 36.915V42H28.5V36.915C34.975 34.849 40 28.982 40 22C40 13.163 32.837 6 24 6ZM24 34C16.268 34 10 27.732 10 20C10 12.268 16.268 6 24 6C31.732 6 38 12.268 38 20C38 27.732 31.732 34 24 34Z" fill="currentColor" stroke="black" stroke-width="1.5"></path>
+                                    <path d="M29.207 16.793C28.816 16.402 28.184 16.402 27.793 16.793L22.5 22.086L20.207 19.793C19.816 19.402 19.184 19.402 18.793 19.793C18.402 20.184 18.402 20.816 18.793 21.207L21.793 24.207C22.184 24.598 22.816 24.598 23.207 24.207L29.207 18.207C29.598 17.816 29.598 17.184 29.207 16.793Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h1 class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black">
+                                <a href="index.html" class="hover:text-[var(--dark-pink-800)] transition-colors">Cupido</a>
+                            </h1>
+                        </div>
+                        
+                        <!-- Desktop Navigation -->
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="nav-link" href="home.html">Home</a>
+                            <a class="nav-link" href="discover.html">Discover</a>
+                            <a class="nav-link text-[var(--dark-pink-600)] font-semibold" href="swipe.html">Swipe</a>
+                            <a class="nav-link" href="messages.html">Messages</a>
+                            <a class="nav-link" href="profile.html">Profile</a>
+                            <a href="settings.html" class="btn-secondary">Settings</a>
+                        </nav>
+                        
+                        <!-- Mobile Menu Button -->
+                        <div class="md:hidden">
+                            <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)] hover:text-black" aria-label="Toggle menu">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1 flex items-center justify-center py-8">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-md mx-auto">
+                        
+                        <!-- Swipe Stack Container -->
+                        <div class="relative h-[600px] mb-8" id="swipeContainer">
+                            <!-- Card Stack -->
+                            <div class="swipe-card absolute inset-0 card overflow-hidden cursor-grab active:cursor-grabbing" id="card1">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
+                                <div class="p-6 h-2/5 flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-black mb-2">Emma, 25</h3>
+                                        <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 2 miles away</p>
+                                        <p class="text-sm text-black">Love hiking, coffee, and good conversations. Looking for someone genuine to explore life with.</p>
+                                    </div>
+                                </div>
+                                <!-- Swipe Indicators -->
+                                <div class="absolute top-8 left-8 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="nopeIndicator1">NOPE</div>
+                                <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator1">LIKE</div>
+                            </div>
+
+                            <div class="swipe-card absolute inset-0 card overflow-hidden cursor-grab active:cursor-grabbing" id="card2" style="z-index: -1; scale: 0.95;">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
+                                <div class="p-6 h-2/5 flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-black mb-2">Alex, 28</h3>
+                                        <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 5 miles away</p>
+                                        <p class="text-sm text-black">Photographer and world traveler. Seeking an adventure companion to share stories with.</p>
+                                    </div>
+                                </div>
+                                <div class="absolute top-8 left-8 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="nopeIndicator2">NOPE</div>
+                                <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator2">LIKE</div>
+                            </div>
+
+                            <div class="swipe-card absolute inset-0 card overflow-hidden cursor-grab active:cursor-grabbing" id="card3" style="z-index: -2; scale: 0.9;">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
+                                <div class="p-6 h-2/5 flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-black mb-2">Sarah, 26</h3>
+                                        <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 3 miles away</p>
+                                        <p class="text-sm text-black">Book lover and yoga enthusiast. Let's explore the city together and find hidden gems!</p>
+                                    </div>
+                                </div>
+                                <div class="absolute top-8 left-8 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="nopeIndicator3">NOPE</div>
+                                <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator3">LIKE</div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex justify-center gap-6 mb-8">
+                            <button id="passBtn" class="w-16 h-16 bg-white border-4 border-red-500 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
+                                <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            
+                            <button id="superLikeBtn" class="w-16 h-16 bg-white border-4 border-blue-500 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors">
+                                <svg class="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </button>
+                            
+                            <button id="likeBtn" class="w-16 h-16 bg-white border-4 border-green-500 rounded-full flex items-center justify-center hover:bg-green-50 transition-colors">
+                                <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="card p-4 text-center">
+                            <div class="grid grid-cols-3 gap-4">
+                                <div>
+                                    <div class="text-2xl font-bold text-[var(--dark-pink-500)]" id="likesCount">12</div>
+                                    <div class="text-sm text-[var(--dark-pink-800)]">Likes Today</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-[var(--dark-pink-500)]" id="matchesCount">3</div>
+                                    <div class="text-sm text-[var(--dark-pink-800)]">New Matches</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-[var(--dark-pink-500)]" id="swipesLeft">15</div>
+                                    <div class="text-sm text-[var(--dark-pink-800)]">Swipes Left</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- No More Cards Message -->
+                        <div id="noMoreCards" class="text-center card p-8 hidden">
+                            <div class="mb-4">
+                                <svg class="w-16 h-16 mx-auto text-[var(--dark-pink-500)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-black mb-2">That's everyone for now!</h3>
+                            <p class="text-[var(--dark-pink-800)] mb-4">Check back later for more profiles, or explore other features.</p>
+                            <div class="flex gap-4 justify-center">
+                                <a href="discover.html" class="btn-primary">Browse Profiles</a>
+                                <a href="messages.html" class="btn-secondary">View Messages</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50">
+                <div class="container mx-auto px-4 sm:px-6">
+                    <div class="flex flex-wrap justify-center gap-4 mb-4">
+                        <a href="home.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Home</a>
+                        <a href="discover.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Discover</a>
+                        <a href="swipe.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Swipe</a>
+                        <a href="messages.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Messages</a>
+                        <a href="profile.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Profile</a>
+                        <a href="settings.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Settings</a>
+                        <a href="help.html" class="text-sm font-bold text-[var(--dark-pink-800)] hover:text-black transition-colors">Help</a>
+                    </div>
+                    
+                    <p class="text-sm text-[var(--dark-pink-800)]">
+                        © 2024 Cupido. All rights reserved. Find love, authentically.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        let currentCardIndex = 0;
+        const cards = ['card1', 'card2', 'card3'];
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let cardBeingDragged = null;
+
+        // Sample profiles for cycling
+        const profiles = [
+            { name: "Emma, 25", location: "2 miles away", bio: "Love hiking, coffee, and good conversations. Looking for someone genuine to explore life with." },
+            { name: "Alex, 28", location: "5 miles away", bio: "Photographer and world traveler. Seeking an adventure companion to share stories with." },
+            { name: "Sarah, 26", location: "3 miles away", bio: "Book lover and yoga enthusiast. Let's explore the city together and find hidden gems!" },
+            { name: "Mike, 30", location: "7 miles away", bio: "Chef and foodie. Let me cook for you on our first date!" },
+            { name: "Lisa, 24", location: "4 miles away", bio: "Artist and music lover. Looking for my creative soulmate." },
+            { name: "James, 29", location: "6 miles away", bio: "Tech enthusiast and dog lover. Swipe right if you love Golden Retrievers!" }
+        ];
+
+        let profileIndex = 3; // Start after the initial 3 profiles
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Button event listeners
+        document.getElementById('passBtn').addEventListener('click', () => swipeCard('left'));
+        document.getElementById('likeBtn').addEventListener('click', () => swipeCard('right'));
+        document.getElementById('superLikeBtn').addEventListener('click', () => swipeCard('up'));
+
+        // Touch/Mouse events for swipe functionality
+        cards.forEach(cardId => {
+            const card = document.getElementById(cardId);
+            
+            // Mouse events
+            card.addEventListener('mousedown', startDrag);
+            card.addEventListener('mousemove', drag);
+            card.addEventListener('mouseup', endDrag);
+            card.addEventListener('mouseleave', endDrag);
+            
+            // Touch events
+            card.addEventListener('touchstart', startDrag);
+            card.addEventListener('touchmove', drag);
+            card.addEventListener('touchend', endDrag);
+        });
+
+        function startDrag(e) {
+            if (e.target.closest('.swipe-card').id !== cards[currentCardIndex]) return;
+            
+            isDragging = true;
+            cardBeingDragged = e.target.closest('.swipe-card');
+            startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+            cardBeingDragged.style.transition = 'none';
+        }
+
+        function drag(e) {
+            if (!isDragging || !cardBeingDragged) return;
+            
+            e.preventDefault();
+            currentX = (e.type === 'mousemove' ? e.clientX : e.touches[0].clientX) - startX;
+            
+            const rotation = currentX * 0.1;
+            cardBeingDragged.style.transform = `translateX(${currentX}px) rotate(${rotation}deg)`;
+            
+            // Show indicators based on swipe direction
+            const likeIndicator = cardBeingDragged.querySelector('[id^="likeIndicator"]');
+            const nopeIndicator = cardBeingDragged.querySelector('[id^="nopeIndicator"]');
+            
+            if (currentX > 50) {
+                likeIndicator.style.opacity = Math.min(1, (currentX - 50) / 100);
+                nopeIndicator.style.opacity = 0;
+            } else if (currentX < -50) {
+                nopeIndicator.style.opacity = Math.min(1, (-currentX - 50) / 100);
+                likeIndicator.style.opacity = 0;
+            } else {
+                likeIndicator.style.opacity = 0;
+                nopeIndicator.style.opacity = 0;
+            }
+        }
+
+        function endDrag(e) {
+            if (!isDragging || !cardBeingDragged) return;
+            
+            isDragging = false;
+            
+            if (Math.abs(currentX) > 100) {
+                // Complete the swipe
+                const direction = currentX > 0 ? 'right' : 'left';
+                completeSwipe(cardBeingDragged, direction);
+            } else {
+                // Snap back
+                cardBeingDragged.style.transition = 'transform 0.3s ease';
+                cardBeingDragged.style.transform = '';
+                
+                // Hide indicators
+                const likeIndicator = cardBeingDragged.querySelector('[id^="likeIndicator"]');
+                const nopeIndicator = cardBeingDragged.querySelector('[id^="nopeIndicator"]');
+                likeIndicator.style.opacity = 0;
+                nopeIndicator.style.opacity = 0;
+            }
+            
+            cardBeingDragged = null;
+            currentX = 0;
+        }
+
+        function swipeCard(direction) {
+            const currentCard = document.getElementById(cards[currentCardIndex]);
+            completeSwipe(currentCard, direction);
+        }
+
+        function completeSwipe(card, direction) {
+            const translateX = direction === 'right' ? '100vw' : direction === 'left' ? '-100vw' : '0';
+            const translateY = direction === 'up' ? '-100vh' : '0';
+            
+            card.style.transition = 'transform 0.5s ease';
+            card.style.transform = `translateX(${translateX}) translateY(${translateY}) rotate(${direction === 'right' ? '30deg' : direction === 'left' ? '-30deg' : '0'})`;
+            card.style.opacity = '0';
+            
+            // Update stats
+            updateStats(direction);
+            
+            setTimeout(() => {
+                // Hide current card and move to next
+                card.style.display = 'none';
+                moveToNextCard();
+            }, 500);
+        }
+
+        function moveToNextCard() {
+            currentCardIndex++;
+            
+            if (currentCardIndex >= cards.length) {
+                // Show no more cards message
+                document.getElementById('swipeContainer').style.display = 'none';
+                document.getElementById('noMoreCards').classList.remove('hidden');
+                return;
+            }
+            
+            // Bring next cards forward
+            for (let i = currentCardIndex; i < cards.length; i++) {
+                const card = document.getElementById(cards[i]);
+                const zIndex = cards.length - i;
+                const scale = 1 - (i - currentCardIndex) * 0.05;
+                
+                card.style.zIndex = zIndex;
+                card.style.transform = `scale(${scale})`;
+            }
+            
+            // Load new profile for the last card if available
+            if (profileIndex < profiles.length) {
+                loadNewProfile();
+            }
+        }
+
+        function loadNewProfile() {
+            const lastCardIndex = (currentCardIndex + 2) % cards.length;
+            const lastCard = document.getElementById(cards[lastCardIndex]);
+            const profile = profiles[profileIndex];
+            
+            // Update card content
+            const nameElement = lastCard.querySelector('h3');
+            const locationElement = lastCard.querySelector('p');
+            const bioElement = lastCard.querySelectorAll('p')[1];
+            
+            nameElement.textContent = profile.name;
+            locationElement.textContent = `📍 ${profile.location}`;
+            bioElement.textContent = profile.bio;
+            
+            // Reset card state
+            lastCard.style.display = 'block';
+            lastCard.style.opacity = '1';
+            lastCard.style.transform = 'scale(0.9)';
+            lastCard.style.zIndex = '-2';
+            
+            // Hide indicators
+            const likeIndicator = lastCard.querySelector('[id^="likeIndicator"]');
+            const nopeIndicator = lastCard.querySelector('[id^="nopeIndicator"]');
+            likeIndicator.style.opacity = 0;
+            nopeIndicator.style.opacity = 0;
+            
+            profileIndex++;
+        }
+
+        function updateStats(direction) {
+            const swipesLeftElement = document.getElementById('swipesLeft');
+            const likesCountElement = document.getElementById('likesCount');
+            const matchesCountElement = document.getElementById('matchesCount');
+            
+            let swipesLeft = parseInt(swipesLeftElement.textContent);
+            swipesLeft--;
+            swipesLeftElement.textContent = swipesLeft;
+            
+            if (direction === 'right' || direction === 'up') {
+                let likesCount = parseInt(likesCountElement.textContent);
+                likesCount++;
+                likesCountElement.textContent = likesCount;
+                
+                // Random chance of match
+                if (Math.random() > 0.7) {
+                    let matchesCount = parseInt(matchesCountElement.textContent);
+                    matchesCount++;
+                    matchesCountElement.textContent = matchesCount;
+                    
+                    // Show match notification
+                    setTimeout(() => {
+                        alert('🎉 It\'s a Match! You can now start chatting.');
+                    }, 600);
+                }
+            }
+        }
+
+        // Prevent default drag behavior on images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>
