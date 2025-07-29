@@ -11,21 +11,19 @@ const verifyToken = (req, res, next) => {
             return res.status(401).json({ message: 'Authorization header missing' });
         }
 
-        const token = tokenHeader.split(' ')[1]; 
+        const token = tokenHeader.split(' ')[1] || tokenHeader; 
 
         if (!token) {
             return res.status(401).json({ message: 'Token not found' });
         }
-        // console.log(token);
-        // console.log(SECRET_KEY);
 
         jwt.verify(token, SECRET_KEY, (err, user) => {
             if (err) {
                 return res.status(403).json({ message: 'Token not verified or expired' });
             }
 
-            req.user = user; 
-            next();
+            req.id = user.id; 
+            return next();
         });
 
     } catch (err) {
