@@ -16,8 +16,8 @@ const verifyToken = (req, res, next) => {
         if (!token) {
             return res.status(401).json({ message: 'Token not found' });
         }
-        console.log(token);
-        console.log(SECRET_KEY);
+        // console.log(token);
+        // console.log(SECRET_KEY);
 
         jwt.verify(token, SECRET_KEY, (err, user) => {
             if (err) {
