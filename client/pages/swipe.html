@@ -35,7 +35,7 @@
                             <a class="nav-link" href="swipe.html">Swipe</a>
                             <a class="nav-link" href="messages.html">Messages</a>
                             <a class="nav-link" href="profile.html">Profile</a>
-                            <a href="settings.html" class="btn-secondary">Settings</a>
+                            <button id="logoutBtn" class="btn-secondary">Logout</button>
                         </nav>
                         <!-- Mobile Menu Button -->
                         <div class="md:hidden">
@@ -577,6 +577,18 @@
         // Prevent default drag behavior on images
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('dragstart', e => e.preventDefault());
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Clear stored tokens
+                localStorage.removeItem('token');
+                sessionStorage.removeItem('token');
+                
+                // Redirect to login page
+                window.location.href = 'login.html';
+            }
         });
     </script>
 </body>
