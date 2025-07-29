@@ -1,5 +1,5 @@
 // main server logic
-
+const verifytoken = require("./middleware/auth.middleware.js");
 const express = require("express");
 const app = express();
 
@@ -15,10 +15,9 @@ app.use(express.json());
 
 app.post("/signup", signup);
 app.post("/signin", signin); 
-app.get("/", (req, res)=>{
+app.get("/",verifytoken,async(req, res)=>{
     res.status(200).send("Hello");
 });
-
 app.listen(port, () => {
     console.log(`Listening to the port: ${port}`); 
 });
