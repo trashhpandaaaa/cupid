@@ -30,8 +30,32 @@ async function createUsersTable() {
     );
   `;
 
+  const userLikes = `CREATE TABLE user_likes (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      liker_id INT NOT NULL,
+      liked_id INT NOT NULL,
+      liked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  
+      FOREIGN KEY (liker_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY (liked_id) REFERENCES users(id) ON DELETE CASCADE,
+      
+      UNIQUE (liker_id, liked_id) -- prevent duplicate likes
+    );`;
+
+    const message = `CREATE TABLE messages (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      sender_id INT NOT NULL,
+      receiver_id INT NOT NULL,
+      message TEXT NOT NULL,
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE
+    );`;
+
   try {
     await connection.execute(createTableQuery);
+    await connection.execute(userLikes);
+    await connection.execute(message);
     console.log("Users table is ready.");
   } catch (error) {
     console.error("Error creating users table:", error.message);

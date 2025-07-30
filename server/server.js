@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 
 const {signup, signin} = require("./controllers/auth.controller.js");
-const {getUsers, getProfile, getUsersSwipe} = require("./controllers/user.controller.js");
+const {getUsers, getProfile, getUsersSwipe, matchUsers, allUsers} = require("./controllers/user.controller.js");
 
 require("dotenv").config();
 
@@ -19,12 +19,17 @@ app.post("/signin", signin);
 app.post("/getuser", verifytoken, getUsers);
 app.post("/getprofile", verifytoken, getProfile);
 app.get("/getuserswipe", verifytoken, getUsersSwipe);
+app.post("/matchuser", verifytoken, matchUsers);
+app.get("/getalluser", verifytoken, allUsers);
 app.post("/test", (req, res) => {
     res.status(200).json({ message: "POST /test works", body: req.body });
 });
+
 app.get("/", async(req, res)=>{
     res.status(200).send("Hello");
 });
+
+
 app.listen(port, () => {
     console.log(`Listening to the port: ${port}`); 
 });

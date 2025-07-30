@@ -1,7 +1,26 @@
 const connection = require("../config/db.js");
 const { success, error } = require("../utils/response.js");
 
-// POST: filter by age & gender range
+const allUsers = async (req, res) => {
+  try {
+    const id = req.id;
+
+    const [users] = await connection.execute(
+      "SELECT id, name, email FROM users WHERE id != ? LIMIT 10 OFFSET 0",
+      [id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      users,
+    });
+  } catch (err) {
+    console.error(err);
+    return error(res, 500, "Internal Server Error", err.message);
+  }
+};
+
+
 const getUsers = async (req, res) => {
     try {
         const { minAge, maxAge, gender } = req.body;
@@ -31,7 +50,6 @@ const getUsers = async (req, res) => {
     }
 };
 
-// GET: fetch profile info of logged-in user
 const getProfile = async (req, res) => {
     try {
         const id = req.id;
@@ -96,5 +114,44 @@ const getUsersSwipe = async (req, res) => {
     }
 };
 
-module.exports = { getUsers, getProfile, getUsersSwipe };
+const matchUsers = async (req, res) => {
+    try {
+        const userId = req.id;
+        const { likedUserId } = req.body;
+
+        if (!userId || !likedUserId) {
+            return error(res, 400, "Missing user ID or liked user ID");
+        }
+
+        if (userId === likedUserId) {
+            return error(res, 400, "You can't like yourself");
+        }
+
+        await connection.execute(
+            "INSERT IGNORE INTO user_likes (liker_id, liked_id) VALUES (?, ?)",
+            [userId, likedUserId]
+        );
+
+        const [match] = await connection.execute(
+            "SELECT * FROM user_likes WHERE liker_id = ? AND liked_id = ?",
+            [likedUserId, userId]
+        );
+
+        const isMatch = match.length > 0;
+
+        return res.status(200).json({
+            success: true,
+            isMatch,
+            message: isMatch ? "It's a match!" : "Like recorded successfully"
+        });
+
+    } catch (err) {
+        console.error(err);
+        return error(res, 500, "Internal Server Error", err.message);
+    }
+};
+
+
+
+module.exports = { getUsers, getProfile, getUsersSwipe, matchUsers, allUsers };
 

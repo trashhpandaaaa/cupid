@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="assets/styles/components.css">
     <link rel="stylesheet" href="assets/styles/utilities.css">
-    <script src="assets/js/login.js"></script
+    <script src="assets/js/login.js"></script>
 </head>
 
 <body class="bg-brutalist-dark-pink" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
@@ -32,11 +32,12 @@
                         <!-- Desktop Navigation -->
                         <nav class="hidden md:flex items-center gap-6">
                             <a class="nav-link" href="discover.html">Home</a>
-                            <a class="nav-link" href="swipe.html">Swipe</a>
+                            <a class="nav-link active" href="swipe.html">Swipe</a>
                             <a class="nav-link" href="messages.html">Messages</a>
                             <a class="nav-link" href="profile.html">Profile</a>
                             <button id="logoutBtn" class="btn-primary">Logout</button>
                         </nav>
+                        
                         <!-- Mobile Menu Button -->
                         <div class="md:hidden">
                             <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)] hover:text-black" aria-label="Toggle menu">
@@ -50,8 +51,11 @@
                     <!-- Mobile Menu -->
                     <div id="mobile-menu" class="hidden md:hidden bg-[var(--dark-pink-200)] border-t-2 border-black">
                         <div class="px-4 py-2 space-y-2">
-                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors" href="login.html">Login</a>
-                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors" href="signup.html">Sign Up</a>
+                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors" href="discover.html">Home</a>
+                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors font-bold" href="swipe.html">Swipe</a>
+                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors" href="messages.html">Messages</a>
+                            <a class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors" href="profile.html">Profile</a>
+                            <button id="mobile-logout" class="block py-2 text-black hover:text-[var(--dark-pink-800)] transition-colors">Logout</button>
                         </div>
                     </div>
                 </div>
@@ -62,69 +66,96 @@
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-md mx-auto">
                         
+                        <!-- Stats Bar -->
+                        <div class="flex justify-between items-center mb-6 p-4 bg-white/80 backdrop-blur-sm rounded-lg border-2 border-black">
+                            <div class="text-center">
+                                <div class="text-lg font-bold text-black" id="swipesLeft">50</div>
+                                <div class="text-xs text-[var(--dark-pink-800)]">Swipes Left</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-lg font-bold text-black" id="likesCount">0</div>
+                                <div class="text-xs text-[var(--dark-pink-800)]">Likes</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-lg font-bold text-black" id="matchesCount">0</div>
+                                <div class="text-xs text-[var(--dark-pink-800)]">Matches</div>
+                            </div>
+                        </div>
+                        
                         <!-- Swipe Stack Container -->
                         <div class="relative h-[600px] mb-8" id="swipeContainer">
                             <!-- Card Stack -->
-                            <div class="swipe-card absolute inset-0 card overflow-hidden cursor-grab active:cursor-grabbing" id="card1">
-                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
-                                <div class="p-6 h-2/5 flex flex-col justify-between">
+                            <div class="swipe-card" id="card0" data-card-index="0">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="profile-image">
+                                <div class="card-content">
                                     <div>
-                                        <h3 class="text-2xl font-bold text-black mb-2">Emma, 25</h3>
-                                        <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 2 miles away</p>
-                                        <p class="text-sm text-black">Love hiking, coffee, and good conversations. Looking for someone genuine to explore life with.</p>
+                                        <h3 class="profile-name">Loading...</h3>
+                                        <p class="profile-location">📍 Getting location...</p>
+                                        <p class="profile-bio">Loading profile...</p>
                                     </div>
                                 </div>
-                                <!-- Swipe Indicators -->
-                                <div class="absolute top-8 left-8 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="nopeIndicator1">NOPE</div>
-                                <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator1">LIKE</div>
+                                <div class="swipe-indicator swipe-indicator-nope" id="nopeIndicator0">NOPE</div>
+                                <div class="swipe-indicator swipe-indicator-like" id="likeIndicator0">LIKE</div>
+                                <div class="swipe-indicator swipe-indicator-super" id="superIndicator0">SUPER LIKE</div>
                             </div>
 
-                            <div class="swipe-card absolute card overflow-hidden cursor-grab active:cursor-grabbing book-stack-card-2" id="card2" style="z-index: -1;">
-                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
-                                <div class="p-6 h-2/5 flex flex-col justify-between">
+                            <div class="swipe-card" id="card1" data-card-index="1">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="profile-image">
+                                <div class="card-content">
                                     <div>
-                                        <h3 class="text-2xl font-bold text-black mb-2">Alex, 28</h3>
-                                        <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 5 miles away</p>
-                                        <p class="text-sm text-black">Photographer and world traveler. Seeking an adventure companion to share stories with.</p>
+                                        <h3 class="profile-name">Loading...</h3>
+                                        <p class="profile-location">📍 Getting location...</p>
+                                        <p class="profile-bio">Loading profile...</p>
                                     </div>
                                 </div>
-                                <div class="absolute top-8 left-8 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="nopeIndicator2">NOPE</div>
-                                <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator2">LIKE</div>
+                                <div class="swipe-indicator swipe-indicator-nope" id="nopeIndicator1">NOPE</div>
+                                <div class="swipe-indicator swipe-indicator-like" id="likeIndicator1">LIKE</div>
+                                <div class="swipe-indicator swipe-indicator-super" id="superIndicator1">SUPER LIKE</div>
                             </div>
 
-                            <div class="swipe-card absolute card overflow-hidden cursor-grab active:cursor-grabbing book-stack-card-3" id="card3" style="z-index: -2;">
-                                <img src="assets/images/default-avatar.png" alt="Profile" class="w-full h-3/5 object-cover">
-                                <div class="p-6 h-2/5 flex flex-col justify-between">
+                            <div class="swipe-card" id="card2" data-card-index="2">
+                                <img src="assets/images/default-avatar.png" alt="Profile" class="profile-image">
+                                <div class="card-content">
                                     <div>
-                                        <h3 class="text-2xl font-bold text-black mb-2">Sarah, 26</h3>
-                                        <p class="text-sm text-[var(--dark-pink-800)] mb-2">📍 3 miles away</p>
-                                        <p class="text-sm text-black">Book lover and yoga enthusiast. Let's explore the city together and find hidden gems!</p>
+                                        <h3 class="profile-name">Loading...</h3>
+                                        <p class="profile-location">📍 Getting location...</p>
+                                        <p class="profile-bio">Loading profile...</p>
                                     </div>
                                 </div>
-                                <div class="absolute top-8 left-8 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="nopeIndicator3">NOPE</div>
-                                <div class="absolute top-8 right-8 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg opacity-0 transition-opacity" id="likeIndicator3">LIKE</div>
+                                <div class="swipe-indicator swipe-indicator-nope" id="nopeIndicator2">NOPE</div>
+                                <div class="swipe-indicator swipe-indicator-like" id="likeIndicator2">LIKE</div>
+                                <div class="swipe-indicator swipe-indicator-super" id="superIndicator2">SUPER LIKE</div>
                             </div>
                         </div>
 
                         <!-- Action Buttons -->
                         <div class="flex justify-center gap-6 mb-8">
-                            <button id="passBtn" class="w-16 h-16 bg-white border-4 border-red-500 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                                <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <button id="passBtn" class="action-btn action-btn-pass" title="Pass (Left Arrow)">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
                             
-                            <button id="superLikeBtn" class="w-16 h-16 bg-white border-4 border-blue-500 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors">
-                                <svg class="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                            <button id="superLikeBtn" class="action-btn action-btn-super" title="Super Like (Up Arrow)">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                 </svg>
                             </button>
                             
-                            <button id="likeBtn" class="w-16 h-16 bg-white border-4 border-green-500 rounded-full flex items-center justify-center hover:bg-green-50 transition-colors">
-                                <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                            <button id="likeBtn" class="action-btn action-btn-like" title="Like (Right Arrow)">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                 </svg>
                             </button>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div id="loadingState" class="text-center card p-8 hidden">
+                            <div class="mb-4">
+                                <div class="animate-spin w-16 h-16 mx-auto border-4 border-[var(--dark-pink-500)] border-t-transparent rounded-full"></div>
+                            </div>
+                            <h3 class="text-xl font-bold text-black mb-2">Finding awesome people...</h3>
+                            <p class="text-[var(--dark-pink-800)]">Please wait while we load more profiles</p>
                         </div>
 
                         <!-- No More Cards Message -->
@@ -139,6 +170,16 @@
                             <div class="flex gap-4 justify-center">
                                 <a href="discover.html" class="btn-primary">Browse Profiles</a>
                                 <a href="messages.html" class="btn-secondary">View Messages</a>
+                            </div>
+                        </div>
+
+                        <!-- Match Notification -->
+                        <div id="matchNotification" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+                            <div class="bg-white rounded-2xl p-8 mx-4 max-w-sm w-full text-center border-4 border-black">
+                                <div class="text-6xl mb-4">🎉</div>
+                                <h2 class="text-3xl font-black text-black mb-2">It's a Match!</h2>
+                                <p class="text-[var(--dark-pink-800)] mb-6">You can now start chatting</p>
+                                <button id="closeMatchNotification" class="btn-primary w-full">Continue Swiping</button>
                             </div>
                         </div>
                     </div>
@@ -158,573 +199,769 @@
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
+    
     <style>
-        /* Additional swipe-specific styles */
-        .swipe-card {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            transition: all 0.3s ease;
+        :root {
+            --dark-pink-200: #fce7f3;
+            --dark-pink-500: #ec4899;
+            --dark-pink-800: #9d174d;
         }
-        
-        .swipe-card img {
-            pointer-events: none;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-        
+
+        /* Swipe Container */
         #swipeContainer {
             touch-action: none;
             perspective: 1000px;
-        }
-        
-        .card {
-            border: 3px solid #2c1810;
-            border-radius: 12px;
-            background: #f8f6f0;
             position: relative;
         }
         
-        /* Book stack effect */
+        /* Card Base Styles */
         .swipe-card {
             position: absolute;
             width: 100%;
             height: 100%;
-            border-radius: 12px;
+            border: 3px solid #2c1810;
+            border-radius: 16px;
             background: linear-gradient(145deg, #f8f6f0 0%, #ebe7db 100%);
-        }
-        
-        /* Top card (active) */
-        .swipe-card:first-child {
-            z-index: 3;
-            transform: translateY(0px) scale(1);
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 
-                0 25px 50px rgba(44, 24, 16, 0.25),
-                0 15px 25px rgba(44, 24, 16, 0.15),
+                0 25px 50px rgba(44, 24, 16, 0.15),
+                0 15px 25px rgba(44, 24, 16, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
-        
-        /* Second card */
-        .book-stack-card-2 {
-            z-index: 2 !important;
-            transform: translateY(8px) translateX(-4px) scale(0.96) !important;
-            box-shadow: 
-                0 20px 40px rgba(44, 24, 16, 0.2),
-                0 10px 20px rgba(44, 24, 16, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            background: linear-gradient(145deg, #ede9dd 0%, #e0dccf 100%);
-            border-color: #3a281f;
+
+        .swipe-card:active {
+            cursor: grabbing;
         }
-        
-        /* Third card */
-        .book-stack-card-3 {
-            z-index: 1 !important;
-            transform: translateY(16px) translateX(-8px) scale(0.92) !important;
-            box-shadow: 
-                0 15px 30px rgba(44, 24, 16, 0.15),
-                0 8px 16px rgba(44, 24, 16, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            background: linear-gradient(145deg, #e2dec2 0%, #d5d1c3 100%);
-            border-color: #453020;
+
+        /* Card Stacking */
+        .swipe-card:nth-child(1) {
+            z-index: 3;
+            transform: translateY(0px) scale(1);
         }
-        
-        /* Book spine effect on the side */
-        .swipe-card::before {
-            content: '';
+
+        .swipe-card:nth-child(2) {
+            z-index: 2;
+            transform: translateY(8px) translateX(-4px) scale(0.96);
+            opacity: 0.9;
+        }
+
+        .swipe-card:nth-child(3) {
+            z-index: 1;
+            transform: translateY(16px) translateX(-8px) scale(0.92);
+            opacity: 0.8;
+        }
+
+        /* Card Content */
+        .profile-image {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-location {
+            font-size: 0.875rem;
+            color: var(--dark-pink-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-bio {
+            font-size: 0.875rem;
+            color: #000;
+            line-height: 1.4;
+        }
+
+        /* Swipe Indicators */
+        .swipe-indicator {
             position: absolute;
-            left: -3px;
-            top: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(180deg, #8b4513, #654321);
-            border-radius: 3px 0 0 3px;
-            z-index: -1;
+            top: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
         }
-        
-        .book-stack-card-2::before {
-            background: linear-gradient(180deg, #7a3e0f, #563015);
+
+        .swipe-indicator-nope {
+            left: 2rem;
+            background: #ef4444;
+            color: white;
         }
-        
-        .book-stack-card-3::before {
-            background: linear-gradient(180deg, #693509, #4a2611);
+
+        .swipe-indicator-like {
+            right: 2rem;
+            background: #22c55e;
+            color: white;
         }
-        
-        /* Book pages effect */
-        .swipe-card::after {
-            content: '';
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            bottom: 2px;
-            width: 8px;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(44, 24, 16, 0.1) 2px,
-                rgba(44, 24, 16, 0.1) 3px
-            );
-            border-radius: 0 8px 8px 0;
+
+        .swipe-indicator-super {
+            left: 50%;
+            top: 1rem;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: white;
         }
-        
-        /* Hover effects for book stack */
-        .swipe-card:hover {
-            transform: translateY(-2px) scale(1.01);
+
+        /* Action Buttons */
+        .action-btn {
+            width: 4rem;
+            height: 4rem;
+            border: 4px solid;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
-        
-        .book-stack-card-2:hover {
-            transform: translateY(6px) translateX(-4px) scale(0.97) !important;
+
+        .action-btn:hover {
+            transform: scale(1.1);
         }
-        
-        .book-stack-card-3:hover {
-            transform: translateY(14px) translateX(-8px) scale(0.93) !important;
+
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
+        .action-btn-pass {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .action-btn-pass:hover {
+            background: #fef2f2;
+        }
+
+        .action-btn-super {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .action-btn-super:hover {
+            background: #eff6ff;
+        }
+
+        .action-btn-like {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .action-btn-like:hover {
+            background: #f0fdf4;
+        }
+
+        /* Card Styles */
+        .card {
+            border: 3px solid #2c1810;
+            border-radius: 12px;
+            background: #f8f6f0;
+        }
+
+        /* Button Styles */
+        .btn-primary, .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 2px solid #2c1810;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #2c1810;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1f0f0a;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c1810;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f5f5;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            #swipeContainer {
+                height: 500px;
+            }
+
+            .action-btn {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+
+            .action-btn svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            .card-content {
+                padding: 1rem;
+            }
+
+            .profile-name {
+                font-size: 1.25rem;
+            }
         }
     </style>
-<script>
-let currentCardIndex = 0;
-const cards = ['card1', 'card2', 'card3', 'card4', 'card5']; // Added more cards
-let isDragging = false;
-let startX = 0;
-let currentX = 0;
-let cardBeingDragged = null;
 
-let profiles = [];
-let profileIndex = 0;
-let offset = 0;
-const limit = 20; // Increased batch size
-let userGender = 'female'; // This should be set based on user's preference
-
-// Mobile menu toggle
-const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener('click', function () {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-            mobileMenu.classList.add('hidden');
-        }
-    });
-}
-
-// Button event listeners
-document.getElementById('passBtn').addEventListener('click', () => swipeCard('left'));
-document.getElementById('likeBtn').addEventListener('click', () => swipeCard('right'));
-document.getElementById('superLikeBtn').addEventListener('click', () => swipeCard('up'));
-
-// Touch/Mouse events for swipe functionality
-function initializeCardEvents() {
-    cards.forEach(cardId => {
-        const card = document.getElementById(cardId);
-        if (!card) return;
-
-        // Mouse events
-        card.addEventListener('mousedown', startDrag, { passive: false });
-        document.addEventListener('mousemove', drag, { passive: false });
-        document.addEventListener('mouseup', endDrag);
-
-        // Touch events
-        card.addEventListener('touchstart', startDrag, { passive: false });
-        card.addEventListener('touchmove', drag, { passive: false });
-        card.addEventListener('touchend', endDrag);
-    });
-}
-
-initializeCardEvents();
-
-function startDrag(e) {
-    const targetCard = e.target.closest('.swipe-card');
-    if (!targetCard || targetCard.id !== cards[currentCardIndex]) return;
-
-    e.preventDefault();
-    isDragging = true;
-    cardBeingDragged = targetCard;
-
-    const clientX = e.type === 'mousedown' ? e.clientX :
-        e.touches && e.touches[0] ? e.touches[0].clientX : 0;
-    startX = clientX;
-
-    if (cardBeingDragged) {
-        cardBeingDragged.style.transition = 'none';
-        cardBeingDragged.style.cursor = 'grabbing';
-        cardBeingDragged.style.zIndex = '1000'; // Bring to front while dragging
-    }
-}
-
-function drag(e) {
-    if (!isDragging || !cardBeingDragged) return;
-
-    e.preventDefault();
-
-    const clientX = e.type === 'mousemove' ? e.clientX :
-        e.touches && e.touches[0] ? e.touches[0].clientX : 0;
-    currentX = clientX - startX;
-
-    const rotation = currentX * 0.1;
-    const lift = Math.abs(currentX) * 0.2;
-
-    cardBeingDragged.style.transform = `translateX(${currentX}px) translateY(-${lift}px) rotate(${rotation}deg) scale(1.05)`;
-    cardBeingDragged.style.boxShadow = `
-        0 ${30 + lift}px ${60 + lift}px rgba(44, 24, 16, 0.3),
-        0 ${20 + lift}px ${30 + lift}px rgba(44, 24, 16, 0.2)
-    `;
-
-    // Show indicators based on swipe direction
-    const likeIndicator = cardBeingDragged.querySelector('[id^="likeIndicator"]');
-    const nopeIndicator = cardBeingDragged.querySelector('[id^="nopeIndicator"]');
-
-    if (likeIndicator && nopeIndicator) {
-        if (currentX > 50) {
-            likeIndicator.style.opacity = Math.min(1, (currentX - 50) / 100);
-            nopeIndicator.style.opacity = 0;
-        } else if (currentX < -50) {
-            nopeIndicator.style.opacity = Math.min(1, (-currentX - 50) / 100);
-            likeIndicator.style.opacity = 0;
-        } else {
-            likeIndicator.style.opacity = 0;
-            nopeIndicator.style.opacity = 0;
-        }
-    }
-}
-
-function endDrag(e) {
-    if (!isDragging || !cardBeingDragged) return;
-
-    isDragging = false;
-
-    if (cardBeingDragged) {
-        cardBeingDragged.style.cursor = 'grab';
-
-        if (Math.abs(currentX) > 100) {
-            // Complete the swipe
-            const direction = currentX > 0 ? 'right' : 'left';
-            completeSwipe(cardBeingDragged, direction);
-        } else {
-            // Snap back to original position
-            cardBeingDragged.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-            cardBeingDragged.style.transform = getCardStackTransform(currentCardIndex);
-            cardBeingDragged.style.boxShadow = `
-                0 25px 50px rgba(44, 24, 16, 0.25),
-                0 15px 25px rgba(44, 24, 16, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6)
-            `;
-
-            // Hide indicators
-            const likeIndicator = cardBeingDragged.querySelector('[id^="likeIndicator"]');
-            const nopeIndicator = cardBeingDragged.querySelector('[id^="nopeIndicator"]');
-            if (likeIndicator) likeIndicator.style.opacity = 0;
-            if (nopeIndicator) nopeIndicator.style.opacity = 0;
-        }
-    }
-
-    cardBeingDragged = null;
-    currentX = 0;
-}
-
-function swipeCard(direction) {
-    const currentCard = document.getElementById(cards[currentCardIndex]);
-    completeSwipe(currentCard, direction);
-}
-
-function completeSwipe(card, direction) {
-    const translateX = direction === 'right' ? '150vw' : direction === 'left' ? '-150vw' : '0';
-    const translateY = direction === 'up' ? '-150vh' : '0';
-    const rotation = direction === 'right' ? '45deg' : direction === 'left' ? '-45deg' : '0';
-
-    card.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease';
-    card.style.transform = `translateX(${translateX}) translateY(${translateY}) rotate(${rotation}) scale(0.8)`;
-    card.style.opacity = '0';
-    card.style.zIndex = '-1';
-
-    // Update stats
-    updateStats(direction);
-
-    setTimeout(() => {
-        // Completely remove the card from view and reset for future use
-        card.style.display = 'none';
-        card.style.transition = '';
-        card.style.transform = '';
-        card.style.opacity = '1';
-        card.style.zIndex = '';
-        moveToNextCard();
-    }, 600);
-}
-
-function getCardStackTransform(cardIndex) {
-    const stackPosition = cardIndex - currentCardIndex;
-    
-    if (stackPosition === 0) {
-        return 'translateY(0px) scale(1)';
-    } else if (stackPosition === 1) {
-        return 'translateY(8px) translateX(-4px) scale(0.96)';
-    } else if (stackPosition === 2) {
-        return 'translateY(16px) translateX(-8px) scale(0.92)';
-    } else if (stackPosition === 3) {
-        return 'translateY(24px) translateX(-12px) scale(0.88)';
-    } else {
-        return 'translateY(32px) translateX(-16px) scale(0.84)';
-    }
-}
-
-function moveToNextCard() {
-    // Move to next profile
-    profileIndex++;
-    currentCardIndex++;
-
-    // Check if we need to load more profiles
-    if (profileIndex >= profiles.length - 2) {
-        loadMoreProfiles();
-    }
-
-    // If we've run out of cards in the DOM, cycle back to the first ones
-    if (currentCardIndex >= cards.length) {
-        currentCardIndex = 0;
-    }
-
-    // Check if we have more profiles to show
-    if (profileIndex >= profiles.length) {
-        // Show no more cards message
-        document.getElementById('swipeContainer').style.display = 'none';
-        document.getElementById('noMoreCards').classList.remove('hidden');
-        return;
-    }
-
-    // Update all visible cards
-    updateCardStack();
-    
-    // Preload the next card if available
-    preloadNextCard();
-}
-
-function updateCardStack() {
-    for (let i = 0; i < cards.length; i++) {
-        const card = document.getElementById(cards[i]);
-        const profileIdx = profileIndex + i;
-        
-        if (profileIdx < profiles.length) {
-            updateCardContent(cards[i], profiles[profileIdx]);
-            card.style.display = 'block';
-            card.style.zIndex = cards.length - i;
-            card.style.transform = getCardStackTransform(i);
-        } else {
-            card.style.display = 'none';
-        }
-    }
-}
-
-async function updateCardContent(cardId, profile) {
-    const card = document.getElementById(cardId);
-    if (!card) return;
-
-    const nameElement = card.querySelector('h3');
-    const locationElement = card.querySelector('p');
-    const bioElement = card.querySelectorAll('p')[1];
-    const imageElement = card.querySelector('img');
-
-    if (nameElement) nameElement.textContent = `${profile.name}, ${profile.age || Math.floor(Math.random() * 20) + 20}`;
-    if (locationElement) locationElement.textContent = `📍 ${profile.location || 'Unknown'}`;
-    if (bioElement) bioElement.textContent = profile.bio || generateRandomBio();
-
-    // Set gender-appropriate random profile image
-    if (imageElement) {
-        const gender = userGender === 'male' ? 'women' : 'men'; // Show opposite gender
-        const randomId = Math.floor(Math.random() * 99) + 1;
-        imageElement.src = `https://randomuser.me/api/portraits/${gender}/${randomId}.jpg`;
-        imageElement.onerror = function() {
-            // Fallback to a different random image if one fails
-            const fallbackId = Math.floor(Math.random() * 50) + 1;
-            this.src = `https://randomuser.me/api/portraits/${gender}/${fallbackId}.jpg`;
-        };
-    }
-
-    card.style.opacity = '1';
-
-    // Reset indicators opacity
-    const likeIndicator = card.querySelector('[id^="likeIndicator"]');
-    const nopeIndicator = card.querySelector('[id^="nopeIndicator"]');
-    if (likeIndicator) likeIndicator.style.opacity = 0;
-    if (nopeIndicator) nopeIndicator.style.opacity = 0;
-}
-
-function generateRandomBio() {
-    const bios = [
-        "Love hiking and outdoor adventures 🏔️",
-        "Coffee enthusiast and bookworm 📚☕",
-        "Yoga instructor seeking zen moments 🧘‍♀️",
-        "Foodie exploring new cuisines 🍜",
-        "Dog lover and weekend explorer 🐕",
-        "Artist painting life in vibrant colors 🎨",
-        "Music lover with eclectic taste 🎵",
-        "Travel addict collecting memories ✈️",
-        "Fitness enthusiast staying active 💪",
-        "Beach lover chasing sunsets 🌅"
-    ];
-    return bios[Math.floor(Math.random() * bios.length)];
-}
-
-async function fetchProfiles(limit = 20, offset = 0) {
-    try {
-        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-        if (!token) {
-            // Generate mock profiles if no token (for demo purposes)
-            return generateMockProfiles(limit);
-        }
-
-        const response = await fetch(`http://localhost:8080/getuserswipe?limit=${limit}&offset=${offset}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`Server error: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
-            return data.data;
-        } else {
-            return generateMockProfiles(limit);
-        }
-    } catch (err) {
-        console.error('Fetch profiles error:', err);
-        return generateMockProfiles(limit);
-    }
-}
-
-function generateMockProfiles(count) {
-    const names = ['Alex', 'Jordan', 'Taylor', 'Casey', 'Morgan', 'Riley', 'Avery', 'Quinn', 'Sage', 'River'];
-    const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio'];
-    
-    const mockProfiles = [];
-    for (let i = 0; i < count; i++) {
-        mockProfiles.push({
-            name: names[Math.floor(Math.random() * names.length)],
-            age: Math.floor(Math.random() * 20) + 20,
-            location: cities[Math.floor(Math.random() * cities.length)],
-            bio: generateRandomBio()
-        });
-    }
-    return mockProfiles;
-}
-
-async function loadInitialProfiles() {
-    profiles = await fetchProfiles(limit, offset);
-    offset += profiles.length;
-
-    if (profiles.length === 0) {
-        document.getElementById('swipeContainer').style.display = 'none';
-        document.getElementById('noMoreCards').classList.remove('hidden');
-        return;
-    }
-
-    profileIndex = 0;
-    currentCardIndex = 0;
-
-    // Initialize all cards with profiles
-    updateCardStack();
-}
-
-async function loadMoreProfiles() {
-    const newProfiles = await fetchProfiles(limit, offset);
-    offset += newProfiles.length;
-
-    if (newProfiles.length > 0) {
-        profiles = profiles.concat(newProfiles);
-    }
-}
-
-function preloadNextCard() {
-    // Preload the image for smoother experience
-    const nextProfileIndex = profileIndex + cards.length;
-    if (nextProfileIndex < profiles.length) {
-        const gender = userGender === 'male' ? 'women' : 'men';
-        const randomId = Math.floor(Math.random() * 99) + 1;
-        const img = new Image();
-        img.src = `https://randomuser.me/api/portraits/${gender}/${randomId}.jpg`;
-    }
-}
-
-function updateStats(direction) {
-    try {
-        const swipesLeftElement = document.getElementById('swipesLeft');
-        const likesCountElement = document.getElementById('likesCount');
-        const matchesCountElement = document.getElementById('matchesCount');
-
-        if (swipesLeftElement) {
-            let swipesLeft = parseInt(swipesLeftElement.textContent) || 0;
-            swipesLeft = Math.max(0, swipesLeft - 1);
-            swipesLeftElement.textContent = swipesLeft;
-        }
-
-        if (direction === 'right' || direction === 'up') {
-            if (likesCountElement) {
-                let likesCount = parseInt(likesCountElement.textContent) || 0;
-                likesCount++;
-                likesCountElement.textContent = likesCount;
+    <script>
+        // App State
+        class SwipeApp {
+            constructor() {
+                this.profiles = [];
+                this.currentProfileIndex = 0;
+                this.offset = 0;
+                this.limit = 20;
+                this.userGender = 'female'; // Set based on user preference
+                this.isDragging = false;
+                this.startX = 0;
+                this.currentX = 0;
+                this.cardBeingDragged = null;
+                this.stats = {
+                    swipesLeft: 50,
+                    likes: 0,
+                    matches: 0
+                };
+                
+                this.init();
             }
 
-            // Random chance of match (30% chance)
-            if (Math.random() > 0.7 && matchesCountElement) {
-                let matchesCount = parseInt(matchesCountElement.textContent) || 0;
-                matchesCount++;
-                matchesCountElement.textContent = matchesCount;
+            init() {
+                this.setupEventListeners();
+                this.loadInitialProfiles();
+            }
 
-                // Show match notification
+            setupEventListeners() {
+                // Mobile menu
+                this.setupMobileMenu();
+                
+                // Action buttons
+                document.getElementById('passBtn').addEventListener('click', () => this.handleSwipe('left'));
+                document.getElementById('likeBtn').addEventListener('click', () => this.handleSwipe('right'));
+                document.getElementById('superLikeBtn').addEventListener('click', () => this.handleSwipe('up'));
+                
+                // Card drag events
+                this.setupCardEvents();
+                
+                // Keyboard shortcuts
+                document.addEventListener('keydown', this.handleKeyboard.bind(this));
+                
+                // Logout
+                this.setupLogout();
+                
+                // Match notification
+                document.getElementById('closeMatchNotification')?.addEventListener('click', this.hideMatchNotification.bind(this));
+            }
+
+            setupMobileMenu() {
+                const toggle = document.getElementById('mobile-menu-toggle');
+                const menu = document.getElementById('mobile-menu');
+                const mobileLogout = document.getElementById('mobile-logout');
+
+                toggle?.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (menu && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                        menu.classList.add('hidden');
+                    }
+                });
+
+                mobileLogout?.addEventListener('click', this.handleLogout.bind(this));
+            }
+
+            setupLogout() {
+                document.getElementById('logoutBtn')?.addEventListener('click', this.handleLogout.bind(this));
+            }
+
+            handleLogout() {
+                if (confirm('Are you sure you want to logout?')) {
+                    // Clear tokens (keeping your existing logic)
+                    localStorage.removeItem('token');
+                    sessionStorage.removeItem('token');
+                    window.location.href = 'login.html';
+                }
+            }
+
+            setupCardEvents() {
+                const cards = document.querySelectorAll('.swipe-card');
+                
+                cards.forEach(card => {
+                    // Mouse events
+                    card.addEventListener('mousedown', this.startDrag.bind(this));
+                    document.addEventListener('mousemove', this.drag.bind(this));
+                    document.addEventListener('mouseup', this.endDrag.bind(this));
+
+                    // Touch events
+                    card.addEventListener('touchstart', this.startDrag.bind(this), { passive: false });
+                    card.addEventListener('touchmove', this.drag.bind(this), { passive: false });
+                    card.addEventListener('touchend', this.endDrag.bind(this));
+                });
+
+                // Prevent image dragging
+                document.querySelectorAll('.profile-image').forEach(img => {
+                    img.addEventListener('dragstart', e => e.preventDefault());
+                });
+            }
+
+            startDrag(e) {
+                const card = e.target.closest('.swipe-card');
+                if (!card || parseInt(card.dataset.cardIndex) !== 0) return;
+
+                e.preventDefault();
+                this.isDragging = true;
+                this.cardBeingDragged = card;
+
+                const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                this.startX = clientX;
+
+                card.style.transition = 'none';
+                card.style.zIndex = '1000';
+            }
+
+            drag(e) {
+                if (!this.isDragging || !this.cardBeingDragged) return;
+
+                e.preventDefault();
+                const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+                this.currentX = clientX - this.startX;
+
+                this.updateCardPosition(this.cardBeingDragged, this.currentX);
+                this.updateSwipeIndicators(this.cardBeingDragged, this.currentX);
+            }
+
+            endDrag() {
+                if (!this.isDragging || !this.cardBeingDragged) return;
+
+                this.isDragging = false;
+
+                if (Math.abs(this.currentX) > 100) {
+                    const direction = this.currentX > 0 ? 'right' : 'left';
+                    this.completeSwipe(this.cardBeingDragged, direction);
+                } else {
+                    this.snapCardBack(this.cardBeingDragged);
+                }
+
+                this.cardBeingDragged = null;
+                this.currentX = 0;
+            }
+
+            updateCardPosition(card, deltaX) {
+                const rotation = deltaX * 0.1;
+                const lift = Math.abs(deltaX) * 0.2;
+                
+                card.style.transform = `translateX(${deltaX}px) translateY(-${lift}px) rotate(${rotation}deg) scale(1.05)`;
+                card.style.boxShadow = `0 ${30 + lift}px ${60 + lift}px rgba(44, 24, 16, 0.3)`;
+            }
+
+            updateSwipeIndicators(card, deltaX) {
+                const likeIndicator = card.querySelector('.swipe-indicator-like');
+                const nopeIndicator = card.querySelector('.swipe-indicator-nope');
+                const superIndicator = card.querySelector('.swipe-indicator-super');
+
+                // Reset all indicators
+                [likeIndicator, nopeIndicator, superIndicator].forEach(indicator => {
+                    if (indicator) indicator.style.opacity = '0';
+                });
+
+                if (deltaX > 50) {
+                    likeIndicator.style.opacity = Math.min(1, (deltaX - 50) / 100);
+                } else if (deltaX < -50) {
+                    nopeIndicator.style.opacity = Math.min(1, (-deltaX - 50) / 100);
+                }
+            }
+
+            snapCardBack(card) {
+                card.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.transform = 'translateY(0px) scale(1)';
+                card.style.boxShadow = '0 25px 50px rgba(44, 24, 16, 0.15)';
+                card.style.zIndex = '3';
+
+                // Hide indicators
+                card.querySelectorAll('.swipe-indicator').forEach(indicator => {
+                    indicator.style.opacity = '0';
+                });
+            }
+
+            handleSwipe(direction) {
+                const topCard = document.querySelector('.swipe-card[data-card-index="0"]');
+                if (topCard) {
+                    this.completeSwipe(topCard, direction);
+                }
+            }
+
+            completeSwipe(card, direction) {
+                const translateX = direction === 'right' ? '150vw' : direction === 'left' ? '-150vw' : '0';
+                const translateY = direction === 'up' ? '-150vh' : '0';
+                const rotation = direction === 'right' ? '45deg' : direction === 'left' ? '-45deg' : '0';
+
+                card.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease';
+                card.style.transform = `translateX(${translateX}) translateY(${translateY}) rotate(${rotation}) scale(0.8)`;
+                card.style.opacity = '0';
+
+                // Update stats and send backend request (async)
+                this.updateStats(direction);
+
                 setTimeout(() => {
-                    alert('It\'s a Match! 🎉 You can now start chatting.');
-                }, 700);
+                    this.moveToNextProfile();
+                }, 600);
+            }
+
+            moveToNextProfile() {
+                this.currentProfileIndex++;
+
+                // Check if we need more profiles
+                if (this.currentProfileIndex >= this.profiles.length - 2) {
+                    this.loadMoreProfiles();
+                }
+
+                // Check if we're out of profiles
+                if (this.currentProfileIndex >= this.profiles.length) {
+                    this.showNoMoreCards();
+                    return;
+                }
+
+                this.updateAllCards();
+            }
+
+            updateAllCards() {
+                const cards = document.querySelectorAll('.swipe-card');
+                
+                cards.forEach((card, index) => {
+                    const profileIndex = this.currentProfileIndex + index;
+                    
+                    if (profileIndex < this.profiles.length) {
+                        this.updateCardContent(card, this.profiles[profileIndex]);
+                        card.style.display = 'block';
+                        card.dataset.cardIndex = index.toString();
+                        
+                        // Reset card position and styling
+                        card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                        card.style.opacity = '1';
+                        card.style.zIndex = (3 - index).toString();
+                        
+                        if (index === 0) {
+                            card.style.transform = 'translateY(0px) scale(1)';
+                        } else if (index === 1) {
+                            card.style.transform = 'translateY(8px) translateX(-4px) scale(0.96)';
+                        } else {
+                            card.style.transform = 'translateY(16px) translateX(-8px) scale(0.92)';
+                        }
+                        
+                        // Hide all indicators
+                        card.querySelectorAll('.swipe-indicator').forEach(indicator => {
+                            indicator.style.opacity = '0';
+                        });
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            updateCardContent(card, profile) {
+                const nameElement = card.querySelector('.profile-name');
+                const locationElement = card.querySelector('.profile-location');
+                const bioElement = card.querySelector('.profile-bio');
+                const imageElement = card.querySelector('.profile-image');
+
+                if (nameElement) {
+                    nameElement.textContent = `${profile.name}, ${profile.age || this.getRandomAge()}`;
+                }
+                
+                if (locationElement) {
+                    locationElement.textContent = `📍 ${profile.location || 'Unknown location'}`;
+                }
+                
+                if (bioElement) {
+                    bioElement.textContent = profile.bio || this.generateRandomBio();
+                }
+
+                if (imageElement) {
+                    this.setProfileImage(imageElement);
+                }
+            }
+
+            setProfileImage(imageElement) {
+                const gender = this.userGender === 'male' ? 'women' : 'men';
+                const randomId = Math.floor(Math.random() * 99) + 1;
+                
+                imageElement.src = `https://randomuser.me/api/portraits/${gender}/${randomId}.jpg`;
+                imageElement.onerror = () => {
+                    const fallbackId = Math.floor(Math.random() * 50) + 1;
+                    imageElement.src = `https://randomuser.me/api/portraits/${gender}/${fallbackId}.jpg`;
+                };
+            }
+
+            getRandomAge() {
+                return Math.floor(Math.random() * 20) + 20;
+            }
+
+            generateRandomBio() {
+                const bios = [
+                    "Love hiking and outdoor adventures 🏔️",
+                    "Coffee enthusiast and bookworm 📚☕",
+                    "Yoga instructor seeking zen moments 🧘‍♀️",
+                    "Foodie exploring new cuisines 🍜",
+                    "Dog lover and weekend explorer 🐕",
+                    "Artist painting life in vibrant colors 🎨",
+                    "Music lover with eclectic taste 🎵",
+                    "Travel addict collecting memories ✈️",
+                    "Fitness enthusiast staying active 💪",
+                    "Beach lover chasing sunsets 🌅",
+                    "Photography enthusiast capturing moments 📸",
+                    "Wine connoisseur and culture seeker 🍷",
+                    "Startup founder changing the world 🚀",
+                    "Chef cooking up something special 👨‍🍳",
+                    "Marathon runner pushing limits 🏃‍♀️"
+                ];
+                return bios[Math.floor(Math.random() * bios.length)];
+            }
+
+            async updateStats(direction) {
+                this.stats.swipesLeft = Math.max(0, this.stats.swipesLeft - 1);
+                document.getElementById('swipesLeft').textContent = this.stats.swipesLeft;
+
+                if (direction === 'right' || direction === 'up') {
+                    this.stats.likes++;
+                    document.getElementById('likesCount').textContent = this.stats.likes;
+
+                    // Send match request to backend when user swipes right
+                    const currentProfile = this.profiles[this.currentProfileIndex - 1];
+                    if (currentProfile) {
+                        await this.sendMatchRequest(currentProfile);
+                    }
+                }
+            }
+
+            async sendMatchRequest(likedProfile) {
+                try {
+                    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+                    if (!token) {
+                        console.warn('No token available, skipping match request');
+                        return;
+                    }
+
+                    const response = await fetch('http://localhost:8080/matchuser', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            likedUserId: likedProfile.id || likedProfile.userId || likedProfile._id
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Match request failed: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    // Check if it's a mutual match
+                    if (data.success && data.isMatch) {
+                        this.stats.matches++;
+                        document.getElementById('matchesCount').textContent = this.stats.matches;
+                        this.showMatchNotification();
+                    }
+
+                } catch (error) {
+                    console.error('Error sending match request:', error);
+                    // Don't show error to user, just log it
+                }
+            }
+
+            showMatchNotification() {
+                const notification = document.getElementById('matchNotification');
+                if (notification) {
+                    notification.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.hideMatchNotification();
+                    }, 3000);
+                }
+            }
+
+            hideMatchNotification() {
+                const notification = document.getElementById('matchNotification');
+                if (notification) {
+                    notification.classList.add('hidden');
+                }
+            }
+
+            showNoMoreCards() {
+                document.getElementById('swipeContainer').style.display = 'none';
+                document.getElementById('noMoreCards').classList.remove('hidden');
+            }
+
+            showLoading() {
+                document.getElementById('loadingState').classList.remove('hidden');
+            }
+
+            hideLoading() {
+                document.getElementById('loadingState').classList.add('hidden');
+            }
+
+            handleKeyboard(e) {
+                // Prevent default keyboard actions when focused on buttons
+                const activeElement = document.activeElement;
+                if (activeElement && activeElement.tagName === 'BUTTON') return;
+
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        this.handleSwipe('left');
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        this.handleSwipe('right');
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        this.handleSwipe('up');
+                        break;
+                }
+            }
+
+            async loadInitialProfiles() {
+                this.showLoading();
+                try {
+                    this.profiles = await this.fetchProfiles(this.limit, this.offset);
+                    this.offset += this.profiles.length;
+
+                    if (this.profiles.length === 0) {
+                        this.showNoMoreCards();
+                        return;
+                    }
+
+                    this.currentProfileIndex = 0;
+                    this.updateAllCards();
+                } catch (error) {
+                    console.error('Error loading profiles:', error);
+                    // Show error state or retry option
+                } finally {
+                    this.hideLoading();
+                }
+            }
+
+            async loadMoreProfiles() {
+                try {
+                    const newProfiles = await this.fetchProfiles(this.limit, this.offset);
+                    this.offset += newProfiles.length;
+
+                    if (newProfiles.length > 0) {
+                        this.profiles = this.profiles.concat(newProfiles);
+                    }
+                } catch (error) {
+                    console.error('Error loading more profiles:', error);
+                }
+            }
+
+            async fetchProfiles(limit = 20, offset = 0) {
+                try {
+                    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+                    if (!token) {
+                        return this.generateMockProfiles(limit);
+                    }
+
+                    const response = await fetch(`http://localhost:8080/getuserswipe?limit=${limit}&offset=${offset}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Server error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+                        return data.data;
+                    } else {
+                        return this.generateMockProfiles(limit);
+                    }
+                } catch (err) {
+                    console.error('Fetch profiles error:', err);
+                    return this.generateMockProfiles(limit);
+                }
+            }
+
+            generateMockProfiles(count) {
+                const names = [
+                    'Alex', 'Jordan', 'Taylor', 'Casey', 'Morgan', 'Riley', 'Avery', 'Quinn', 'Sage', 'River',
+                    'Cameron', 'Drew', 'Emery', 'Finley', 'Hayden', 'Jamie', 'Kendall', 'Logan', 'Parker', 'Reese'
+                ];
+                const cities = [
+                    'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 
+                    'San Antonio', 'San Diego', 'Dallas', 'San Jose', 'Austin', 'Jacksonville'
+                ];
+                
+                const mockProfiles = [];
+                for (let i = 0; i < count; i++) {
+                    mockProfiles.push({
+                        id: Date.now() + i,
+                        name: names[Math.floor(Math.random() * names.length)],
+                        age: this.getRandomAge(),
+                        location: `${cities[Math.floor(Math.random() * cities.length)]}, ${Math.floor(Math.random() * 10) + 1} miles away`,
+                        bio: this.generateRandomBio()
+                    });
+                }
+                return mockProfiles;
+            }
+
+            setUserGender(gender) {
+                this.userGender = gender;
             }
         }
-    } catch (error) {
-        console.error('Error updating stats:', error);
-    }
-}
 
-// Set user gender preference (you should set this based on user's actual preference)
-function setUserGender(gender) {
-    userGender = gender; // 'male' or 'female'
-}
+        // Initialize the app when DOM is loaded
+        let swipeApp;
 
-// Prevent default drag behavior on images
-document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('dragstart', e => e.preventDefault());
-});
+        document.addEventListener('DOMContentLoaded', () => {
+            swipeApp = new SwipeApp();
+        });
 
-// Logout functionality
-const logoutBtn = document.getElementById('logoutBtn');
-if (logoutBtn) {
-    logoutBtn.addEventListener('click', function () {
-        if (confirm('Are you sure you want to logout?')) {
-            localStorage.removeItem('token');
-            sessionStorage.removeItem('token');
-            window.location.href = 'login.html';
-        }
-    });
-}
-
-// Keyboard shortcuts for better UX
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft') {
-        swipeCard('left');
-    } else if (e.key === 'ArrowRight') {
-        swipeCard('right');
-    } else if (e.key === 'ArrowUp') {
-        swipeCard('up');
-    }
-});
-
-// Load initial profiles on page load
-window.addEventListener('DOMContentLoaded', () => {
-    loadInitialProfiles();
-});
-</script>
+        // Expose functions for external use if needed
+        window.SwipeApp = SwipeApp;
+    </script>
 </body>
 </html>
