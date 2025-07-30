@@ -1,7 +1,11 @@
 // main server logic
 const verifytoken = require("./middleware/auth.middleware.js");
 const express = require("express");
+const { createServer } = require("node:http");
+const Server = require("socket.io");
+const { join } = require('node:path');
 const app = express();
+const server = createServer(app);
 
 const {signup, signin} = require("./controllers/auth.controller.js");
 const {getUsers, getProfile, getUsersSwipe, matchUsers, allUsers, setProfile} = require("./controllers/user.controller.js");
@@ -26,11 +30,10 @@ app.post("/test", (req, res) => {
     res.status(200).json({ message: "POST /test works", body: req.body });
 });
 
-app.get("/", async(req, res)=>{
-    res.status(200).send("Hello");
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/pages/messages.html'));
 });
 
-
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Listening to the port: ${port}`); 
 });

@@ -1,457 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Messages - Cupid</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
-    
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800"
+    />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="assets/styles/main.css">
-    <link rel="stylesheet" href="assets/styles/components.css">
-    <link rel="stylesheet" href="assets/styles/utilities.css">
-    
-    <!-- Custom CSS to prevent hover animations -->
+    <link rel="stylesheet" href="assets/styles/main.css" />
+    <link rel="stylesheet" href="assets/styles/components.css" />
+    <link rel="stylesheet" href="assets/styles/utilities.css" />
+
     <style>
-        /* Remove any hover effects on conversation items */
-        .conversation-item:hover {
-            transform: none !important;
-            box-shadow: none !important;
-            transition: none !important;
-            background-color: inherit !important;
-        }
-        
-        /* Remove any hover effects on cards */
-        .card:hover {
-            transform: none !important;
-            box-shadow: none !important;
-            transition: none !important;
-        }
-        
-        /* Remove any hover effects on message boxes */
-        .max-w-xs:hover, .max-w-sm:hover, .max-w-md:hover {
-            transform: none !important;
-            box-shadow: none !important;
-            transition: none !important;
-        }
-        
-        /* Override any general hover animations */
-        div:hover {
-            transform: none !important;
-        }
-        
-        /* Ensure no lifting animations on rounded elements */
-        .rounded-lg:hover {
-            transform: none !important;
-            box-shadow: none !important;
-            transition: none !important;
-        }
+      /* Remove hover effects on conversation items, cards, messages */
+      .conversation-item:hover,
+      .card:hover,
+      .max-w-xs:hover,
+      .max-w-sm:hover,
+      .max-w-md:hover,
+      div:hover,
+      .rounded-lg:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        transition: none !important;
+        background-color: inherit !important;
+      }
     </style>
-    <script src="assets/js/login.js"></script
-</head>
+  </head>
 
-<body class="bg-brutalist-dark-pink" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+  <body
+    class="bg-brutalist-dark-pink"
+    style="font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif"
+  >
     <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root">
-        <div class="layout-container flex h-full grow flex-col">
-            
-            <!-- Header -->
-            <header class="site-header">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex items-center justify-between py-4">
-                        <!-- Logo -->
-                        <div class="flex items-center gap-3">
-                            <h1 class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black">
-                                <a href="home.html" class="text-[var(--dark-pink-800)]">Cupid</a>
-                            </h1>
-                        </div>
-                        
-                        <!-- Desktop Navigation -->
-                        <nav class="hidden md:flex items-center gap-6">
-                            <a class="nav-link" href="discover.html">Home</a>
-                            <a class="nav-link" href="swipe.html">Swipe</a>
-                            <a class="nav-link" href="messages.html">Messages</a>
-                            <a class="nav-link" href="profile.html">Profile</a>
-                            <button id="logoutBtn" class="btn-primary">Logout</button>
-                        </nav>
-                        
-                        <!-- Mobile Menu Button -->
-                        <div class="md:hidden">
-                            <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)]" aria-label="Toggle menu">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Mobile Menu -->
-                    <nav id="mobile-menu" class="md:hidden hidden border-t-2 border-black py-4">
-                        <div class="flex flex-col gap-4 px-4">
-                            <a href="login.html" class="btn-secondary inline-block text-center">Login</a>
-                            <a href="signup.html" class="btn-primary inline-block text-center">Sign Up</a>
-                        </div>
-                    </nav>
-                </div>
-            </header>
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- Header -->
+        <header class="site-header">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between py-4">
+              <!-- Logo -->
+              <div class="flex items-center gap-3">
+                <h1
+                  class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black"
+                >
+                  <a href="home.html" class="text-[var(--dark-pink-800)]"
+                    >Cupid</a
+                  >
+                </h1>
+              </div>
 
-            <!-- Main Content -->
-            <main class="flex-1">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div class="max-w-4xl mx-auto">                      
+              <!-- Desktop Navigation -->
+              <nav class="hidden md:flex items-center gap-6">
+                <a class="nav-link" href="discover.html">Home</a>
+                <a class="nav-link" href="swipe.html">Swipe</a>
+                <a class="nav-link" href="messages.html">Messages</a>
+                <a class="nav-link" href="profile.html">Profile</a>
+                <button id="logoutBtn" class="btn-primary">Logout</button>
+              </nav>
 
-                        <!-- Messages Layout -->
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            
-                            <!-- Conversations List -->
-                            <div class="lg:col-span-1 lg:h-[600px]">
-                                <div class="card h-full flex flex-col">
-                                    <div class="p-4 border-b-2 border-black">
-                                        <h3 class="text-xl font-bold text-black mb-4">Conversations</h3>
-                                        <div class="relative">
-                                            <input type="text" placeholder="Search conversations..." 
-                                                   class="w-full px-4 py-2 pl-10 border-2 border-black rounded-none bg-white text-black placeholder-gray-500 focus:outline-none focus:border-[var(--dark-pink-500)]">
-                                            <svg class="absolute left-3 top-3 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="flex-1 overflow-y-auto min-h-[200px] lg:min-h-0">
-                                        <!-- Conversation Items -->
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer active" data-conversation="emma">
-                                            <div class="flex items-center gap-3">
-                                                <img src="assets/images/default-avatar.png" alt="Emma" class="w-12 h-12 rounded-full object-cover">
-                                                <div class="flex-1 min-w-0">
-                                                    <div class="flex items-center justify-between mb-1">
-                                                        <h4 class="text-sm font-bold text-black truncate">Emma</h4>
-                                                        <span class="text-xs text-[var(--dark-pink-800)]">2m</span>
-                                                    </div>
-                                                    <p class="text-sm text-[var(--dark-pink-800)] truncate">That sounds like a great plan! When...</p>
-                                                </div>
-                                                <div class="w-3 h-3 bg-[var(--dark-pink-500)] rounded-full"></div>
-                                            </div>
-                                        </div>
+              <!-- Mobile Menu Button -->
+              <div class="md:hidden">
+                <button
+                  id="mobile-menu-toggle"
+                  class="p-2 text-[var(--dark-pink-800)]"
+                  aria-label="Toggle menu"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16m-7 6h7"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
 
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer" data-conversation="alex">
-                                            <div class="flex items-center gap-3">
-                                                <img src="assets/images/default-avatar.png" alt="Alex" class="w-12 h-12 rounded-full object-cover">
-                                                <div class="flex-1 min-w-0">
-                                                    <div class="flex items-center justify-between mb-1">
-                                                        <h4 class="text-sm font-bold text-black truncate">Alex</h4>
-                                                        <span class="text-xs text-[var(--dark-pink-800)]">1h</span>
-                                                    </div>
-                                                    <p class="text-sm text-[var(--dark-pink-800)] truncate">I'd love to show you some of my...</p>
-                                                </div>
-                                            </div>
-                                        </div>
+        <main class="flex flex-grow overflow-hidden">
+          <!-- Sidebar: Removed -->
 
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer" data-conversation="sarah">
-                                            <div class="flex items-center gap-3">
-                                                <img src="assets/images/default-avatar.png" alt="Sarah" class="w-12 h-12 rounded-full object-cover">
-                                                <div class="flex-1 min-w-0">
-                                                    <div class="flex items-center justify-between mb-1">
-                                                        <h4 class="text-sm font-bold text-black truncate">Sarah</h4>
-                                                        <span class="text-xs text-[var(--dark-pink-800)]">3h</span>
-                                                    </div>
-                                                    <p class="text-sm text-[var(--dark-pink-800)] truncate">Have you read any good books lately?</p>
-                                                </div>
-                                            </div>
-                                        </div>
+          <!-- Chat Window -->
+          <section
+            class="flex-1 flex flex-col justify-between bg-[var(--dark-pink-50)]"
+          >
+            <!-- Chat Header: show client ID here -->
+            <div
+              id="chatHeader"
+              class="px-6 py-4 border-b-2 border-black bg-[var(--dark-pink-100)] font-extrabold text-[var(--dark-pink-800)] text-lg"
+            >
+              Connecting...
+            </div>
 
-                                        <div class="conversation-item p-4 border-b border-gray-200 cursor-pointer" data-conversation="mike">
-                                            <div class="flex items-center gap-3">
-                                                <img src="assets/images/default-avatar.png" alt="Mike" class="w-12 h-12 rounded-full object-cover">
-                                                <div class="flex-1 min-w-0">
-                                                    <div class="flex items-center justify-between mb-1">
-                                                        <h4 class="text-sm font-bold text-black truncate">Mike</h4>
-                                                        <span class="text-xs text-[var(--dark-pink-800)]">1d</span>
-                                                    </div>
-                                                    <p class="text-sm text-[var(--dark-pink-800)] truncate">What's your favorite cuisine?</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Chat Area -->
-                            <div class="lg:col-span-2 lg:h-[600px]">
-                                <div class="card h-full flex flex-col" id="chatArea">
-                                    
-                                    <!-- Chat Header -->
-                                    <div class="p-4 border-b-2 border-black flex items-center gap-3" id="chatHeader">
-                                        <img src="assets/images/default-avatar.png" alt="Emma" class="w-10 h-10 rounded-full object-cover">
-                                        <div class="flex-1">
-                                            <h3 class="text-lg font-bold text-black">Emma</h3>
-                                            <p class="text-sm text-[var(--dark-pink-800)]">Online now</p>
-                                        </div>
-                                        <button class="p-2 text-[var(--dark-pink-800)]">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    
-                                    <!-- Messages -->
-                                    <div class="flex-1 overflow-y-auto p-4 space-y-4 min-h-[300px] lg:min-h-0" id="messagesContainer">
-                                        <!-- Sample messages for Emma -->
-                                        <div class="flex justify-start">
-                                            <div class="max-w-xs sm:max-w-sm md:max-w-md bg-white border-2 border-black rounded-lg p-3">
-                                                <p class="text-sm text-black">Hey! I saw you like hiking too. Have you ever been to Blue Ridge Trail?</p>
-                                                <span class="text-xs text-[var(--dark-pink-800)] mt-1 block">10:30 AM</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="flex justify-end">
-                                            <div class="max-w-xs sm:max-w-sm md:max-w-md bg-[var(--dark-pink-500)] text-white rounded-lg p-3">
-                                                <p class="text-sm">No, but I've been wanting to check it out! Is it a good trail for beginners?</p>
-                                                <span class="text-xs text-[var(--dark-pink-200)] mt-1 block">10:32 AM</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="flex justify-start">
-                                            <div class="max-w-xs sm:max-w-sm md:max-w-md bg-white border-2 border-black rounded-lg p-3">
-                                                <p class="text-sm text-black">Absolutely! It's perfect for beginners. Great views and not too challenging. Would you like to go together sometime?</p>
-                                                <span class="text-xs text-[var(--dark-pink-800)] mt-1 block">10:35 AM</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="flex justify-end">
-                                            <div class="max-w-xs sm:max-w-sm md:max-w-md bg-[var(--dark-pink-500)] text-white rounded-lg p-3">
-                                                <p class="text-sm">That sounds like a great plan! When were you thinking?</p>
-                                                <span class="text-xs text-[var(--dark-pink-200)] mt-1 block">10:37 AM</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Message Input -->
-                                    <div class="p-4 border-t-2 border-black">
-                                        <div class="flex gap-2">
-                                            <input type="text" id="messageInput" placeholder="Type a message..." 
-                                                   class="flex-1 px-4 py-3 border-2 border-black rounded-none bg-white text-black placeholder-gray-500 focus:outline-none focus:border-[var(--dark-pink-500)]">
-                                            <button id="sendBtn" class="btn-primary px-6">
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+            <!-- Messages -->
+            <div
+              id="messageContainer"
+              class="flex-1 p-6 space-y-4 overflow-y-auto"
+            >
+              <!-- Messages will be appended here -->
+            </div>
 
-            <!-- Footer -->
-            <footer class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50">
-                <div class="container mx-auto px-4 sm:px-6">
-                    <p class="text-sm text-[var(--dark-pink-800)]">
-                        © 2025 Cupid. All rights reserved. Find love, authentically.
-                    </p>
-                </div>
-            </footer>
-        </div>
+            <!-- Input Box -->
+            <form
+              id="messageForm"
+              class="p-4 border-t-2 border-black flex gap-3 bg-[var(--dark-pink-100)]"
+            >
+              <input
+                id="messageInput"
+                type="text"
+                placeholder="Type your message..."
+                class="flex-1 border-2 border-black px-4 py-2 rounded-lg shadow-[2px_2px_0px_black] bg-white focus:outline-none"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="px-4 py-2 font-bold rounded-lg border-2 border-black bg-[var(--dark-pink-300)] shadow-[2px_2px_0px_black] hover:bg-[var(--dark-pink-400)]"
+              >
+                Send
+              </button>
+            </form>
+          </section>
+        </main>
+
+        <!-- Footer -->
+        <footer
+          class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50"
+        >
+          <div class="container mx-auto px-4 sm:px-6">
+            <p class="text-sm text-[var(--dark-pink-800)]">
+              © 2025 Cupid. All rights reserved. Find love, authentically.
+            </p>
+          </div>
+        </footer>
+      </div>
     </div>
 
-    <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
     <script>
-        // Sample conversation data
-        const conversations = {
-            emma: {
-                name: "Emma",
-                avatar: "assets/images/default-avatar.png",
-                status: "Online now",
-                messages: [
-                    { sender: "them", text: "Hey! I saw you like hiking too. Have you ever been to Blue Ridge Trail?", time: "10:30 AM" },
-                    { sender: "me", text: "No, but I've been wanting to check it out! Is it a good trail for beginners?", time: "10:32 AM" },
-                    { sender: "them", text: "Absolutely! It's perfect for beginners. Great views and not too challenging. Would you like to go together sometime?", time: "10:35 AM" },
-                    { sender: "me", text: "That sounds like a great plan! When were you thinking?", time: "10:37 AM" }
-                ]
-            },
-            alex: {
-                name: "Alex",
-                avatar: "assets/images/default-avatar.png",
-                status: "Last seen 1h ago",
-                messages: [
-                    { sender: "them", text: "Your profile photos are amazing! Are you into photography too?", time: "2:15 PM" },
-                    { sender: "me", text: "Thank you! I'm just a hobbyist, but I love capturing moments.", time: "2:18 PM" },
-                    { sender: "them", text: "I'd love to show you some of my travel photos sometime. Maybe over coffee?", time: "2:20 PM" }
-                ]
-            },
-            sarah: {
-                name: "Sarah",
-                avatar: "assets/images/default-avatar.png",
-                status: "Last seen 3h ago",
-                messages: [
-                    { sender: "them", text: "Hi! I noticed we both love books. What's your favorite genre?", time: "11:30 AM" },
-                    { sender: "me", text: "I'm really into mystery novels lately. How about you?", time: "11:45 AM" },
-                    { sender: "them", text: "Same here! Have you read any good books lately?", time: "12:00 PM" }
-                ]
-            },
-            mike: {
-                name: "Mike",
-                avatar: "assets/images/default-avatar.png",
-                status: "Last seen 1d ago",
-                messages: [
-                    { sender: "them", text: "Hey there! I see you're a foodie too. What's your favorite cuisine?", time: "Yesterday" },
-                    { sender: "me", text: "I love Italian food! What about you?", time: "Yesterday" }
-                ]
+      // Generate a random client ID (for demo purpose)
+      const clientId = 'Client-' + Math.floor(Math.random() * 10000);
+
+      // Show client ID in chat header
+      const chatHeader = document.getElementById('chatHeader');
+      chatHeader.textContent = `Your ID: ${clientId}`;
+
+      // Setup WebSocket connection to server
+      const socket = new WebSocket('ws://localhost:8008');
+
+      socket.addEventListener('open', () => {
+        console.log('WebSocket connection established');
+      });
+
+      socket.addEventListener('message', (event) => {
+        try {
+          const data = JSON.parse(event.data);
+
+          if (data.type === 'message') {
+            // Show messages from other clients only (exclude own messages)
+            if (data.clientId !== clientId) {
+              const msgDiv = document.createElement('div');
+              msgDiv.className =
+                'max-w-sm p-3 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_black]';
+              msgDiv.innerHTML = `<p class="text-sm text-black"><strong>${data.clientId}:</strong> ${data.content}</p>`;
+              document.getElementById('messageContainer').appendChild(msgDiv);
             }
+          }
+        } catch (err) {
+          console.error('Error parsing message:', err);
+        }
+      });
+
+      socket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed:', event.code, event.reason);
+      });
+
+      socket.addEventListener('error', (error) => {
+        console.error('WebSocket error:', error);
+      });
+
+      // Handle form submit to send message
+      const messageForm = document.getElementById('messageForm');
+      const messageInput = document.getElementById('messageInput');
+
+      messageForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const message = messageInput.value.trim();
+        if (!message) return;
+
+        const payload = {
+          type: 'message',
+          clientId,
+          content: message,
         };
 
-        let currentConversation = 'emma';
+        socket.send(JSON.stringify(payload));
 
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Add own message to UI immediately
+        const msgDiv = document.createElement('div');
+        msgDiv.className =
+          'max-w-sm ml-auto p-3 rounded-xl border-2 border-black bg-[var(--dark-pink-200)] shadow-[4px_4px_0px_black]';
+        msgDiv.innerHTML = `<p class="text-sm text-black">${message}</p>`;
+        document.getElementById('messageContainer').appendChild(msgDiv);
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuToggle = document.getElementById('mobile-menu-toggle');
-            
-            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-
-        // Conversation switching
-        document.querySelectorAll('.conversation-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // Remove active class from all items
-                document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                const conversationId = this.dataset.conversation;
-                currentConversation = conversationId;
-                loadConversation(conversationId);
-            });
-        });
-
-        // Send message functionality
-        document.getElementById('sendBtn').addEventListener('click', sendMessage);
-        document.getElementById('messageInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        function loadConversation(conversationId) {
-            const conversation = conversations[conversationId];
-            if (!conversation) return;
-
-            // Update chat header
-            const chatHeader = document.getElementById('chatHeader');
-            chatHeader.querySelector('img').src = conversation.avatar;
-            chatHeader.querySelector('img').alt = conversation.name;
-            chatHeader.querySelector('h3').textContent = conversation.name;
-            chatHeader.querySelector('p').textContent = conversation.status;
-
-            // Update messages
-            const messagesContainer = document.getElementById('messagesContainer');
-            messagesContainer.innerHTML = '';
-
-            conversation.messages.forEach(message => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `flex ${message.sender === 'me' ? 'justify-end' : 'justify-start'}`;
-                
-                messageDiv.innerHTML = `
-                    <div class="max-w-xs sm:max-w-sm md:max-w-md ${message.sender === 'me' ? 'bg-[var(--dark-pink-500)] text-white' : 'bg-white border-2 border-black text-black'} rounded-lg p-3">
-                        <p class="text-sm">${message.text}</p>
-                        <span class="text-xs ${message.sender === 'me' ? 'text-[var(--dark-pink-200)]' : 'text-[var(--dark-pink-800)]'} mt-1 block">${message.time}</span>
-                    </div>
-                `;
-                
-                messagesContainer.appendChild(messageDiv);
-            });
-
-            // Scroll to bottom
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function sendMessage() {
-            const messageInput = document.getElementById('messageInput');
-            const messageText = messageInput.value.trim();
-            
-            if (!messageText) return;
-
-            // Add message to conversation data
-            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            conversations[currentConversation].messages.push({
-                sender: 'me',
-                text: messageText,
-                time: currentTime
-            });
-
-            // Add message to UI
-            const messagesContainer = document.getElementById('messagesContainer');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'flex justify-end';
-            messageDiv.innerHTML = `
-                <div class="max-w-xs sm:max-w-sm md:max-w-md bg-[var(--dark-pink-500)] text-white rounded-lg p-3">
-                    <p class="text-sm">${messageText}</p>
-                    <span class="text-xs text-[var(--dark-pink-200)] mt-1 block">${currentTime}</span>
-                </div>
-            `;
-            messagesContainer.appendChild(messageDiv);
-
-            // Clear input
-            messageInput.value = '';
-
-            // Scroll to bottom
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            // Simulate response after 2 seconds
-            setTimeout(() => {
-                const responses = [
-                    "That's interesting!",
-                    "I'd love to hear more about that.",
-                    "Sounds like fun!",
-                    "Great idea!",
-                    "I agree completely!",
-                    "Tell me more!"
-                ];
-                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                
-                conversations[currentConversation].messages.push({
-                    sender: 'them',
-                    text: randomResponse,
-                    time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-                });
-
-                const responseDiv = document.createElement('div');
-                responseDiv.className = 'flex justify-start';
-                responseDiv.innerHTML = `
-                    <div class="max-w-xs sm:max-w-sm md:max-w-md bg-white border-2 border-black rounded-lg p-3">
-                        <p class="text-sm text-black">${randomResponse}</p>
-                        <span class="text-xs text-[var(--dark-pink-800)] mt-1 block">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                    </div>
-                `;
-                messagesContainer.appendChild(responseDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 2000);
-        }
-
-        // Initialize with Emma's conversation
-        loadConversation('emma');
-
-        // Logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            if (confirm('Are you sure you want to logout?')) {
-                // Clear stored tokens
-                localStorage.removeItem('token');
-                sessionStorage.removeItem('token');
-                
-                // Redirect to login page
-                window.location.href = 'login.html';
-            }
-        });
+        messageInput.value = '';
+      });
     </script>
-</body>
+  </body>
 </html>
