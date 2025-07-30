@@ -1,280 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Cupid</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800" />
-    
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800"
+    />
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="assets/styles/main.css" />
     <link rel="stylesheet" href="assets/styles/components.css" />
     <link rel="stylesheet" href="assets/styles/utilities.css" />
     <script src="assets/js/login.js"></script>
-</head>
+  </head>
 
-<body class="bg-brutalist-dark-pink" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-    <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root">
-        <div class="layout-container flex h-full grow flex-col">
+  <body
+    class="bg-brutalist-dark-pink"
+    style="font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif"
+  >
+    <div
+      class="relative flex size-full min-h-screen flex-col overflow-x-hidden group/design-root"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- Header -->
+        <header class="site-header">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between py-4">
+              <!-- Logo -->
+              <div class="flex items-center gap-3">
+                <h1
+                  class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black"
+                >
+                  <a
+                    href="home.html"
+                    class="hover:text-[var(--dark-pink-800)] transition-colors"
+                    >Cupid</a
+                  >
+                </h1>
+              </div>
 
-            <!-- Header -->
-            <header class="site-header">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex items-center justify-between py-4">
-                        <!-- Logo -->
-                        <div class="flex items-center gap-3">
-                            <h1 class="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-black">
-                                <a href="home.html" class="hover:text-[var(--dark-pink-800)] transition-colors">Cupid</a>
-                            </h1>
+              <!-- Desktop Navigation -->
+              <nav class="hidden md:flex items-center gap-6">
+                <a class="nav-link" href="discover.html">Home</a>
+                <a class="nav-link" href="swipe.html">Swipe</a>
+                <a class="nav-link" href="messages.html">Messages</a>
+                <a class="nav-link" href="profile.html">Profile</a>
+                <button id="logoutBtn" class="btn-primary">Logout</button>
+              </nav>
+              <!-- Mobile Menu Button -->
+              <div class="md:hidden">
+                <button
+                  id="mobile-menu-toggle"
+                  class="p-2 text-[var(--dark-pink-800)] hover:text-black"
+                  aria-label="Toggle menu"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16m-7 6h7"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <nav
+              id="mobile-menu"
+              class="md:hidden hidden border-t-2 border-black py-4"
+            >
+              <div class="flex flex-col gap-4 px-4">
+                <a
+                  href="login.html"
+                  class="btn-secondary inline-block text-center"
+                  >Login</a
+                >
+                <a
+                  href="signup.html"
+                  class="btn-primary inline-block text-center"
+                  >Sign Up</a
+                >
+              </div>
+            </nav>
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="max-w-4xl mx-auto">
+              <!-- Profile Header -->
+              <div class="card p-8 mb-8">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                  <!-- Profile Picture -->
+                  <div class="relative">
+                    <img
+                      src="assets/images/default-avatar.png"
+                      alt="Your Profile"
+                      class="w-32 h-32 rounded-full object-cover border-4 border-black"
+                      id="profileAvatar"
+                    />
+                  </div>
+
+                  <!-- Profile Info -->
+                  <div class="flex-1 text-center md:text-left">
+                    <h2
+                      class="text-3xl font-black text-black mb-2"
+                      id="profileNameAge"
+                    >
+                      Loading...
+                    </h2>
+                    <p
+                      class="text-lg text-[var(--dark-pink-800)] mb-4"
+                      id="profileLocation"
+                    ></p>
+
+                    <div
+                      class="flex flex-wrap justify-center md:justify-start gap-4 mb-4"
+                    >
+                      <div class="text-center">
+                        <div
+                          class="text-2xl font-bold text-[var(--dark-pink-500)]"
+                          id="profileMatches"
+                        >
+                          -
                         </div>
-
-                        <!-- Desktop Navigation -->
-                        <nav class="hidden md:flex items-center gap-6">
-                            <a class="nav-link" href="discover.html">Home</a>
-                            <a class="nav-link" href="swipe.html">Swipe</a>
-                            <a class="nav-link" href="messages.html">Messages</a>
-                            <a class="nav-link" href="profile.html">Profile</a>
-                            <button id="logoutBtn" class="btn-primary">Logout</button>
-                        </nav>
-                        <!-- Mobile Menu Button -->
-                        <div class="md:hidden">
-                            <button id="mobile-menu-toggle" class="p-2 text-[var(--dark-pink-800)] hover:text-black" aria-label="Toggle menu">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                                </svg>
-                            </button>
+                        <div class="text-sm text-[var(--dark-pink-800)]">
+                          Matches
                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div
+                          class="text-2xl font-bold text-[var(--dark-pink-500)]"
+                          id="profileLikes"
+                        >
+                          -
+                        </div>
+                        <div class="text-sm text-[var(--dark-pink-800)]">
+                          Likes
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <div
+                          class="text-2xl font-bold text-[var(--dark-pink-500)]"
+                          id="profileComplete"
+                        >
+                          -
+                        </div>
+                        <div class="text-sm text-[var(--dark-pink-800)]">
+                          Profile Complete
+                        </div>
+                      </div>
                     </div>
 
-                    <!-- Mobile Menu -->
-                    <nav id="mobile-menu" class="md:hidden hidden border-t-2 border-black py-4">
-                        <div class="flex flex-col gap-4 px-4">
-                            <a href="login.html" class="btn-secondary inline-block text-center">Login</a>
-                            <a href="signup.html" class="btn-primary inline-block text-center">Sign Up</a>
-                        </div>
-                    </nav>
+                    <a href="edit-profile.html" class="btn-primary"
+                      >Edit Profile</a
+                    >
+                  </div>
                 </div>
-            </header>
+              </div>
 
-            <!-- Main Content -->
-            <main class="flex-1">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div class="max-w-4xl mx-auto">
-
-                        <!-- Profile Header -->
-                        <div class="card p-8 mb-8">
-                            <div class="flex flex-col md:flex-row items-center gap-8">
-                                <!-- Profile Picture -->
-                                <div class="relative">
-                                    <img src="assets/images/default-avatar.png" alt="Your Profile" class="w-32 h-32 rounded-full object-cover border-4 border-black" id="profileAvatar" />
-                                </div>
-
-                                <!-- Profile Info -->
-                                <div class="flex-1 text-center md:text-left">
-                                    <h2 class="text-3xl font-black text-black mb-2" id="profileNameAge">Loading...</h2>
-                                    <p class="text-lg text-[var(--dark-pink-800)] mb-4" id="profileLocation"></p>
-
-                                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-4">
-                                        <div class="text-center">
-                                            <div class="text-2xl font-bold text-[var(--dark-pink-500)]" id="profileMatches">-</div>
-                                            <div class="text-sm text-[var(--dark-pink-800)]">Matches</div>
-                                        </div>
-                                        <div class="text-center">
-                                            <div class="text-2xl font-bold text-[var(--dark-pink-500)]" id="profileLikes">-</div>
-                                            <div class="text-sm text-[var(--dark-pink-800)]">Likes</div>
-                                        </div>
-                                        <div class="text-center">
-                                            <div class="text-2xl font-bold text-[var(--dark-pink-500)]" id="profileComplete">-</div>
-                                            <div class="text-sm text-[var(--dark-pink-800)]">Profile Complete</div>
-                                        </div>
-                                    </div>
-
-                                    <a href="edit-profile.html" class="btn-primary">Edit Profile</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Profile Details Grid -->
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                            <!-- About Me -->
-                            <div class="card p-6">
-                                <h3 class="text-xl font-bold text-black mb-4">About Me</h3>
-                                <p class="text-[var(--dark-pink-800)] mb-4" id="profileAboutMe">Loading...</p>
-                            </div>
-
-                            <!-- Basic Info -->
-                            <div class="card p-6">
-                                <h3 class="text-xl font-bold text-black mb-4">Basic Info</h3>
-                                <div class="space-y-3" id="profileBasicInfo">
-                                    <!-- Dynamic Basic Info Rows -->
-                                </div>
-                            </div>
-
-                            <!-- Interests -->
-                            <div class="card p-6">
-                                <h3 class="text-xl font-bold text-black mb-4">Interests</h3>
-                                <div class="flex flex-wrap gap-2" id="profileInterests">
-                                    <!-- Dynamic Interest Tags -->
-                                </div>
-                            </div>
-
-                            <!-- Photos -->
-                            <div class="card p-6">
-                                <h3 class="text-xl font-bold text-black mb-4">Photos</h3>
-                                <div class="grid grid-cols-3 gap-3" id="profilePhotos">
-                                    <!-- Dynamic Photos -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Account Actions -->
-                        <div class="card p-6 mt-8">
-                            <h3 class="text-xl font-bold text-black mb-4">Account Actions</h3>
-                            <div class="flex flex-wrap gap-4">
-                                <a href="edit-profile.html" class="btn-secondary">Edit Profile</a>
-                                <button class="btn-secondary" id="privacyBtn">Privacy Settings</button>
-                                <button class="btn-secondary" id="notificationBtn">Notification Settings</button>
-                                <button class="btn-secondary" id="accountSettingsBtn">Account Settings</button>
-                                <button class="text-red-600 hover:text-red-800 font-semibold" id="deactivateBtn">Deactivate Account</button>
-                            </div>
-                        </div>
-                    </div>
+              <!-- Profile Details Grid -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- About Me -->
+                <div class="card p-6">
+                  <h3 class="text-xl font-bold text-black mb-4">About Me</h3>
+                  <p
+                    class="text-[var(--dark-pink-800)] mb-4"
+                    id="profileAboutMe"
+                  >
+                    Loading...
+                  </p>
                 </div>
-            </main>
 
-            <!-- Footer -->
-            <footer class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50">
-                <p class="text-sm text-[var(--dark-pink-800)]">
-                    © 2025 Cupid. All rights reserved. Find love, authentically.
-                </p>
-            </footer>
-        </div>
+                <!-- Basic Info -->
+                <div class="card p-6">
+                  <h3 class="text-xl font-bold text-black mb-4">Basic Info</h3>
+                  <div class="space-y-3" id="profileBasicInfo">
+                    <!-- Dynamic Basic Info Rows -->
+                  </div>
+                </div>
+
+                <!-- Interests -->
+                <div class="card p-6">
+                  <h3 class="text-xl font-bold text-black mb-4">Interests</h3>
+                  <div class="flex flex-wrap gap-2" id="profileInterests">
+                    <!-- Dynamic Interest Tags -->
+                  </div>
+                </div>
+
+                <!-- Photos -->
+                <div class="card p-6">
+                  <h3 class="text-xl font-bold text-black mb-4">Photos</h3>
+                  <div class="grid grid-cols-3 gap-3" id="profilePhotos">
+                    <!-- Dynamic Photos -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Account Actions -->
+              <div class="card p-6 mt-8">
+                <h3 class="text-xl font-bold text-black mb-4">
+                  Account Actions
+                </h3>
+                <div class="flex flex-wrap gap-4">
+                  <a href="edit-profile.html" class="btn-secondary"
+                    >Edit Profile</a
+                  >
+                  <button class="btn-secondary" id="privacyBtn">
+                    Privacy Settings
+                  </button>
+                  <button class="btn-secondary" id="notificationBtn">
+                    Notification Settings
+                  </button>
+                  <button class="btn-secondary" id="accountSettingsBtn">
+                    Account Settings
+                  </button>
+                  <button
+                    class="text-red-600 hover:text-red-800 font-semibold"
+                    id="deactivateBtn"
+                  >
+                    Deactivate Account
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+          class="text-center py-6 border-t-2 border-black bg-[var(--dark-pink-200)] bg-opacity-50"
+        >
+          <p class="text-sm text-[var(--dark-pink-800)]">
+            © 2025 Cupid. All rights reserved. Find love, authentically.
+          </p>
+        </footer>
+      </div>
     </div>
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-toggle').addEventListener('click', function () {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
+      // Mobile menu toggle
+      document
+        .getElementById("mobile-menu-toggle")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.toggle("hidden");
         });
 
-        // Edit buttons functionality
-        document.getElementById('privacyBtn').addEventListener('click', () => alert('Privacy settings would open here'));
-        document.getElementById('notificationBtn').addEventListener('click', () => alert('Notification settings would open here'));
-        document.getElementById('accountSettingsBtn').addEventListener('click', () => alert('Account settings would open here'));
+      // Edit buttons functionality
+      document
+        .getElementById("privacyBtn")
+        .addEventListener("click", () =>
+          alert("Privacy settings would open here")
+        );
+      document
+        .getElementById("notificationBtn")
+        .addEventListener("click", () =>
+          alert("Notification settings would open here")
+        );
+      document
+        .getElementById("accountSettingsBtn")
+        .addEventListener("click", () =>
+          alert("Account settings would open here")
+        );
 
-        // Deactivate account
-        document.getElementById('deactivateBtn').addEventListener('click', () => {
-            if (confirm('Are you sure you want to deactivate your account? This action can be reversed later.')) {
-                alert('Account deactivation functionality would be implemented here');
-            }
+      // Deactivate account
+      document.getElementById("deactivateBtn").addEventListener("click", () => {
+        if (
+          confirm(
+            "Are you sure you want to deactivate your account? This action can be reversed later."
+          )
+        ) {
+          alert("Account deactivation functionality would be implemented here");
+        }
+      });
+
+      // Logout functionality
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", function () {
+          if (confirm("Are you sure you want to logout?")) {
+            localStorage.removeItem("token");
+            sessionStorage.removeItem("token");
+            window.location.href = "login.html";
+          }
         });
 
-        // Logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function () {
-            if (confirm('Are you sure you want to logout?')) {
-                localStorage.removeItem('token');
-                sessionStorage.removeItem('token');
-                window.location.href = 'login.html';
-            }
-        });
-
-        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-        console.log(token)
-        async function loadProfile() {
-            if (!token) {
-                alert('Not logged in. Redirecting to login...');
-                window.location.href = 'login.html';
-                return;
-            }
-
-            try {
-                const res = await fetch('http://localhost:8080/getprofile', {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-
-                if (!res.ok) throw new Error('Failed to fetch profile');
-
-                const data = await res.json();
-
-                if (!data.success) {
-                    alert('Failed to load profile: ' + (data.message || 'Unknown error'));
-                    return;
-                }
-
-                const profile = data.profile;
-
-                // Set profile picture
-                const img = document.getElementById('profileAvatar');
-                if (profile.avatar_url) img.src = profile.avatar_url;
-
-                // Set name and age
-                const nameAgeEl = document.getElementById('profileNameAge');
-                nameAgeEl.textContent = `${profile.name || '-'}, ${profile.age || '-'}`;
-
-                // Set location
-                const locationEl = document.getElementById('profileLocation');
-                locationEl.textContent = profile.location ? `📍 ${profile.location}` : '';
-
-                // Set stats: matches, likes, profile complete %
-                document.getElementById('profileMatches').textContent = profile.matches ?? '-';
-                document.getElementById('profileLikes').textContent = profile.likes ?? '-';
-                document.getElementById('profileComplete').textContent = profile.profile_complete_percentage ? profile.profile_complete_percentage + '%' : '-';
-
-                // About me text
-                document.getElementById('profileAboutMe').textContent = profile.about_me || '-';
-
-                // Basic Info
-                const basicInfoContainer = document.getElementById('profileBasicInfo');
-                basicInfoContainer.innerHTML = ''; // clear current content
-                const basicInfoMap = {
-                    Height: profile.height,
-                    Education: profile.education,
-                    Occupation: profile.occupation,
-                    Relationship: profile.relationship_status,
-                    'Looking for': profile.looking_for
-                };
-                for (const [key, value] of Object.entries(basicInfoMap)) {
-                    const div = document.createElement('div');
-                    div.className = 'flex justify-between';
-                    div.innerHTML = `<span class="text-black font-semibold">${key}:</span><span class="text-[var(--dark-pink-800)]">${value || '-'}</span>`;
-                    basicInfoContainer.appendChild(div);
-                }
-
-                // Interests tags
-                const interestsContainer = document.getElementById('profileInterests');
-                interestsContainer.innerHTML = '';
-                if (Array.isArray(profile.interests)) {
-                    profile.interests.forEach(interest => {
-                        const span = document.createElement('span');
-                        span.className = 'px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full';
-                        span.textContent = interest;
-                        interestsContainer.appendChild(span);
-                    });
-                }
-
-                // Photos grid
-                const photosContainer = document.getElementById('profilePhotos');
-                photosContainer.innerHTML = '';
-                if (Array.isArray(profile.photos)) {
-                    profile.photos.forEach(photoUrl => {
-                        const div = document.createElement('div');
-                        div.className = 'aspect-square bg-gray-200 border-2 border-black rounded-lg overflow-hidden';
-                        div.innerHTML = `<img src="${photoUrl}" alt="Profile Photo" class="w-full h-full object-cover">`;
-                        photosContainer.appendChild(div);
-                    });
-                }
-            } catch (error) {
-                console.error('Error loading profile:', error);
-                alert('Could not load profile data.');
-            }
+      const token =
+        localStorage.getItem("token") || sessionStorage.getItem("token");
+      console.log(token);
+      async function loadProfile() {
+        if (!token) {
+          alert("Not logged in. Redirecting to login...");
+          window.location.href = "login.html";
+          return;
         }
 
-        window.addEventListener('DOMContentLoaded', loadProfile);
+        try {
+          const res = await fetch("http://localhost:8080/getprofile", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!res.ok) throw new Error("Failed to fetch profile");
+
+          const data = await res.json();
+
+          if (!data.success) {
+            alert(
+              "Failed to load profile: " + (data.message || "Unknown error")
+            );
+            return;
+          }
+
+          const profile = data.data;
+
+          // Set profile picture
+          const img = document.getElementById("profileAvatar");
+          if (profile.avatar_url) img.src = profile.avatar_url;
+
+          // Set name and age
+          const nameAgeEl = document.getElementById("profileNameAge");
+          nameAgeEl.textContent = `${profile.name || "-"}, ${
+            profile.age || "-"
+          }`;
+
+          // Set location
+          const locationEl = document.getElementById("profileLocation");
+          locationEl.textContent = profile.location
+            ? `📍 ${profile.location}`
+            : "";
+
+          // Set stats: matches, likes, profile complete %
+          document.getElementById("profileMatches").textContent =
+            profile.matches ?? "-";
+          document.getElementById("profileLikes").textContent =
+            profile.likes ?? "-";
+          document.getElementById("profileComplete").textContent =
+            profile.profile_complete_percentage
+              ? profile.profile_complete_percentage + "%"
+              : "-";
+
+          // About me text
+          document.getElementById("profileAboutMe").textContent =
+            profile.about_me || "-";
+
+          // Basic Info
+          const basicInfoContainer =
+            document.getElementById("profileBasicInfo");
+          basicInfoContainer.innerHTML = ""; // clear current content
+          const basicInfoMap = {
+            Height: profile.height,
+            Education: profile.education,
+            Occupation: profile.occupation,
+            Relationship: profile.relationship_status,
+            "Looking for": profile.looking_for,
+          };
+          for (const [key, value] of Object.entries(basicInfoMap)) {
+            const div = document.createElement("div");
+            div.className = "flex justify-between";
+            div.innerHTML = `<span class="text-black font-semibold">${key}:</span><span class="text-[var(--dark-pink-800)]">${
+              value || "-"
+            }</span>`;
+            basicInfoContainer.appendChild(div);
+          }
+
+          // Interests tags
+          const interestsContainer =
+            document.getElementById("profileInterests");
+          interestsContainer.innerHTML = "";
+          if (Array.isArray(profile.interests)) {
+            profile.interests.forEach((interest) => {
+              const span = document.createElement("span");
+              span.className =
+                "px-3 py-1 bg-[var(--dark-pink-200)] border-2 border-black text-black text-sm font-medium rounded-full";
+              span.textContent = interest;
+              interestsContainer.appendChild(span);
+            });
+          }
+
+          // Photos grid
+          const photosContainer = document.getElementById("profilePhotos");
+          photosContainer.innerHTML = "";
+          if (Array.isArray(profile.photos)) {
+            profile.photos.forEach((photoUrl) => {
+              const div = document.createElement("div");
+              div.className =
+                "aspect-square bg-gray-200 border-2 border-black rounded-lg overflow-hidden";
+              div.innerHTML = `<img src="${photoUrl}" alt="Profile Photo" class="w-full h-full object-cover">`;
+              photosContainer.appendChild(div);
+            });
+          }
+        } catch (error) {
+          console.error("Error loading profile:", error);
+          alert("Could not load profile data.");
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", loadProfile);
     </script>
-</body>
+  </body>
 </html>

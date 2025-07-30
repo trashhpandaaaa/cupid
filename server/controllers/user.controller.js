@@ -6,8 +6,8 @@ const allUsers = async (req, res) => {
     const id = req.id;
 
     const [users] = await connection.execute(
-      "SELECT id, name, email FROM users WHERE id != ? LIMIT 10 OFFSET 0",
-      [id]
+      "SELECT id, name, email FROM users WHERE id != ? AND gender != ? LIMIT 10 OFFSET 0",
+      [id, "male"]
     );
 
     return res.status(200).json({
@@ -87,8 +87,8 @@ const getUsersSwipe = async (req, res) => {
 
         // Get the gender of the logged-in user
         const [userResult] = await connection.execute(
-            "SELECT gender FROM users WHERE id = ?",
-            [id]
+            "SELECT gender FROM users WHERE id = ? AND gender != ?",
+            [id, "male"]
         );
 
         if (userResult.length === 0) {
@@ -151,7 +151,66 @@ const matchUsers = async (req, res) => {
     }
 };
 
+const setProfile = async (req, res) => {
+  try {
+    const userId = req.id; // Assumes token is verified and user ID is attached to request
 
+    const {
+      profilePicture,
+      height,
+      education,
+      occupation,
+      relationshipStatus,
+      lookingFor,
+      about,
+      location
+    } = req.body;
 
-module.exports = { getUsers, getProfile, getUsersSwipe, matchUsers, allUsers };
+    const insertQuery = `
+      INSERT INTO profile_info (
+        user_id,
+        photo_url,
+        height,
+        education,
+        occupation,
+        relationship_status,
+        looking_for,
+        about_me,
+        location
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON DUPLICATE KEY UPDATE
+        photo_url = VALUES(photo_url),
+        height = VALUES(height),
+        education = VALUES(education),
+        occupation = VALUES(occupation),
+        relationship_status = VALUES(relationship_status),
+        looking_for = VALUES(looking_for),
+        about_me = VALUES(about_me),
+        location = VALUES(location),
+        updated_at = CURRENT_TIMESTAMP
+    `;
+
+    const values = [
+      userId,
+      profilePicture,
+      height,
+      education,
+      occupation,
+      relationshipStatus,
+      lookingFor,
+      about,
+      location
+    ];
+
+    await connection.execute(insertQuery, values);
+
+    res.json({ success: true, message: 'Profile updated successfully.' });
+  } catch (error) {
+    console.error('Error saving profile:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+}
+
+module.exports = { getUsers, getProfile, getUsersSwipe, matchUsers, allUsers, setProfile };
 

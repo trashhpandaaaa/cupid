@@ -30,7 +30,7 @@ async function createUsersTable() {
     );
   `;
 
-  const userLikes = `CREATE TABLE user_likes (
+  const userLikes = `CREATE TABLE IF NOT EXISTS user_likes (
       id INT PRIMARY KEY AUTO_INCREMENT,
       liker_id INT NOT NULL,
       liked_id INT NOT NULL,
@@ -42,7 +42,7 @@ async function createUsersTable() {
       UNIQUE (liker_id, liked_id) -- prevent duplicate likes
     );`;
 
-    const message = `CREATE TABLE messages (
+    const message = `CREATE TABLE IF NOT EXISTS messages (
       id INT AUTO_INCREMENT PRIMARY KEY,
       sender_id INT NOT NULL,
       receiver_id INT NOT NULL,

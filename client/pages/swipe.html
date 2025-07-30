@@ -722,10 +722,10 @@
                 const gender = this.userGender === 'male' ? 'women' : 'men';
                 const randomId = Math.floor(Math.random() * 99) + 1;
                 
-                imageElement.src = `https://randomuser.me/api/portraits/${gender}/${randomId}.jpg`;
+                imageElement.src = `https://randomuser.me/api/portraits/${"women"}/${randomId}.jpg`;
                 imageElement.onerror = () => {
                     const fallbackId = Math.floor(Math.random() * 50) + 1;
-                    imageElement.src = `https://randomuser.me/api/portraits/${gender}/${fallbackId}.jpg`;
+                    imageElement.src = `https://randomuser.me/api/portraits/${"women"}/${fallbackId}.jpg`;
                 };
             }
 
