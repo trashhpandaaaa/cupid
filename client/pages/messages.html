@@ -147,7 +147,9 @@
 
     <script>
       // Generate a random client ID (for demo purpose)
-      const clientId = 'Client-' + Math.floor(Math.random() * 10000);
+      const user = ["Sabin Puri", "Prasanna Karki", "Rochak Niraula", "Rasul Ghatane"];
+      const randomPpl = Math.floor(Math.random() * 4);
+      const clientId = user[randomPpl];
 
       // Show client ID in chat header
       const chatHeader = document.getElementById('chatHeader');
